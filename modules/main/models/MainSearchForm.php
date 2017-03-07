@@ -21,7 +21,7 @@ class MainSearchForm extends Model
     /**
      * @var
      */
-    public $hotels;
+    public $destination;
     /**
      * @var
      */
@@ -41,7 +41,7 @@ class MainSearchForm extends Model
     /**
      * @var
      */
-    public $kids;
+    public $children;
 
     /**
      * @inheritdoc
@@ -50,9 +50,9 @@ class MainSearchForm extends Model
     public function rules()
     {
         return [
-            [['hotels', 'date_from', 'date_to'], 'string'],
-            [['rooms', 'adults', 'kids'], 'integer'],
-            [['hotels', 'date_from', 'date_to', 'rooms', 'adults', 'kids'], 'required']
+            [['destination', 'date_from', 'date_to'], 'string'],
+            [['rooms', 'adults', 'children'], 'integer'],
+            [['destination', 'date_from', 'date_to', 'rooms', 'adults', 'children'], 'required']
         ];
     }
 
@@ -63,12 +63,12 @@ class MainSearchForm extends Model
     public function attributeLabels()
     {
         return [
-            'hotels'=>\Yii::t('app', 'Destination'),
+            'destination'=>\Yii::t('app', 'Destination'),
             'date_from'=>\Yii::t('app', 'Check In'),
             'date_to'=>\Yii::t('app', 'Check Out'),
             'rooms'=> \Yii::t('app', 'Rooms'),
             'adults'=> \Yii::t('app', 'Adults'),
-            'kids'=> \Yii::t('app', 'Kids'),
+            'children'=> \Yii::t('app', 'Kids'),
         ];
     }
 
@@ -79,18 +79,20 @@ class MainSearchForm extends Model
      * @throws
      */
     public function send()
-    :bool {
+    {
         if ($this->validate()) {
+            $dateFrom = \DateTime::createFromFormat("m/d/Y", $this->date_from);
+            $dateTo = \DateTime::createFromFormat("m/d/Y", $this->date_to);
 
-
-            \Yii::$app->response->redirect(['hotels/search',
-
-                'hotels' => ["hotel" => [1067,1070,1075,135813,145214,1506,1508,1526,1533,1539,1550,161032,170542,182125,187939,212167,215417,228671,229318,23476] ],
-                'date_from' => $this->date_from,
-                'date_to' => $this->date_to,
-                'rooms' => $this->rooms,
-                'adults' => $this->adults,
-                'kids' => $this->kids
+            return \Yii::$app->response->redirect(['hotels/search',
+                'AvailabilityApi' => [
+                    'destination' => $this->destination,
+                    'date_from' => $dateFrom->format('Y-m-d'),
+                    'date_to' => $dateTo->format('Y-m-d'),
+                    'rooms' => $this->rooms,
+                    'adults' => $this->adults,
+                    'children' => $this->children
+                ]
             ]);
 
         }

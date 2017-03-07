@@ -42,9 +42,9 @@ use yii\helpers\Html;
                         <div class="form-group col-sm-6 col-md-3">
                             <h4 class="title">Where</h4>
                             <label>Your Destination</label>
-                            <input type="text" name="MainSearchForm[hotels]"  id="mainsearchform-hotels" class="input-text full-width" value placeholder="enter a destination or hotel name"
+                            <input type="text" name="MainSearchForm[destination]"  id="mainsearchform-destination" class="input-text full-width" value placeholder="enter a destination or hotel name"
                             aria-required="true" aria-invalid="true"/>
-                            <div class="help-block"><?= $searchForm->errors['hotels'] ? $searchForm->errors['hotels'][0] : ''?></div>
+                            <div class="help-block"><?= $searchForm->errors['destination'] ? $searchForm->errors['destination'][0] : ''?></div>
                         </div>
 
                         <div class="form-group col-sm-6 col-md-4">
@@ -95,7 +95,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-4">
                                     <label>Kids</label>
                                     <div class="selector">
-                                        <select id="mainsearchform-kids" name="MainSearchForm[kids]" class="full-width">
+                                        <select id="mainsearchform-children" name="MainSearchForm[children]" class="full-width">
                                             <option selected value="0">No kids</option>
                                         </select>
                                     </div>

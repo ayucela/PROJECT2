@@ -29,6 +29,7 @@ class SiteController extends Controller
     {
         $searchForm = new MainSearchForm();
 
+
         if($searchForm->load(\Yii::$app->request->post())){
             $searchForm->send();
         }

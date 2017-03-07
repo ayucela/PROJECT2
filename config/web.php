@@ -87,12 +87,19 @@ $config = [
             'signKey' => env('GLIDE_SIGN_KEY')
         ],
         // hotelbeds API config
-        'hotels' => [
+       /* 'hotels' => [
             'class' => 'app\components\hotels\Config',
             'url' => 'https://api.test.hotelbeds.com/hotel-api/1.0',
             'apiKey' => 'zm6v9tgf8yyebd829yshbyh5',
             'sharedSecret' => 'rBZ7Y2GXhW',
+        ]*/
+        'hotels' => [
+            'class' => 'app\components\hotels\ConfigApi',
+            'url' => 'https://api.test.hotelbeds.com',
+            'apiKey' => 'zm6v9tgf8yyebd829yshbyh5',
+            'sharedSecret' => 'rBZ7Y2GXhW',
         ]
+
 
 
 
