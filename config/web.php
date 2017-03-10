@@ -51,9 +51,9 @@ $config = [
         'errorHandler' => [
             'errorAction' => '/main/site/error',
         ],
-        'db' => $db_local,
+        //'db' => $db_local,
         //uncomment when use on hosting
-        //'db' => $db_server,
+        'db' => $db_server,
 
         'urlManager' => $urlManager,
         'i18n' => [
@@ -82,7 +82,7 @@ $config = [
         ],
         'glide' => [
             'class' => 'trntv\glide\components\Glide',
-            'sourcePath' => '@web/uploads',
+            'sourcePath' => '@webroot/uploads',
             'cachePath' => '@runtime/glide',
             'signKey' => env('GLIDE_SIGN_KEY')
         ],

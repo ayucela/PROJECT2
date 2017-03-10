@@ -2,3 +2,19 @@
  * Title:   Custom Style File
  * Author:  http://themeforest.net/user/soaptheme 
  */
+.image-box .box, .image-box.box {
+    height: 500px;
+}
+
+.image-box .box .box-title-container, .image-box.box .box-title-container {
+    height: 50px;
+}
+
+.image-box .box img, .image-box.box img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+

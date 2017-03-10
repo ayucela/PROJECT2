@@ -13,6 +13,7 @@ use app\components\hotels\queries\HotelsApiQuery;
 use app\models\api\AvailabilityApi;
 use app\models\api\HotelsApi;
 use app\modules\main\models\MainSearchForm;
+use app\modules\main\models\PreviewForm;
 use hotelbeds\hotel_api_sdk\helpers\Availability;
 use hotelbeds\hotel_api_sdk\HotelApiClient;
 use hotelbeds\hotel_api_sdk\model\Destination;
@@ -52,34 +53,47 @@ class HotelsController extends Controller
     {
         return $this->render('index');
     }
-    public function actionSearch()
+    public function actionSearch($view=null, array $sort=null)
     {
+        $session=\Yii::$app->session;
+        if(!$view) {
+            $viewType = '_search-list';
+        } else
+            $viewType = $view;
 
-        $params = \Yii::$app->request->get();
-       // dd($params);
-        $availability = new AvailabilityApi();
-        if($availability->load($params)){
-            dd($availability->response());
-            $dataProvider = new ArrayDataProvider([
-                'allModels' => $availability->response()
-            ]);
+        if($session['main_form']){
+            $params = $session['main_form'];
+            unset($session['main_form']);
 
+        }
+
+        if(\Yii::$app->request->post()) {
+            $params = \Yii::$app->request->post();
+        }
+
+
+        if($params) {
+
+            $model = new PreviewForm();
+
+            if ($model->load($params)) {
+
+               $preview = $model->preview();
+               $this->saveSession($preview);
+
+
+                //dd($session['preview']);
+            }
+        } else {
+            $preview = $this->getSession();
         }
 
 
 
-
-
-        $dataProvider = new ArrayDataProvider([
-                'allModels' => $hotels
-        ]);
-
-        dd($dataProvider->models);
-
         return $this->render('search', [
-           'dataProvider' => $dataProvider
+           'preview' => $preview,
+           'viewType' => $viewType
         ]);
-
     }
 
     public function actionApiTest()
@@ -103,5 +117,20 @@ class HotelsController extends Controller
         dd($client);
 
     }
+
+    private function saveSession($preview)
+    {
+        $session = \Yii::$app->session;
+        $session['preview'] = $preview;
+    }
+    private function getSession()
+    {
+        $session = \Yii::$app->session;
+        if($session['preview']){
+            return $session['preview'];
+        }
+        return false;
+    }
+
 
 }

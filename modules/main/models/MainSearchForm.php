@@ -83,9 +83,8 @@ class MainSearchForm extends Model
         if ($this->validate()) {
             $dateFrom = \DateTime::createFromFormat("m/d/Y", $this->date_from);
             $dateTo = \DateTime::createFromFormat("m/d/Y", $this->date_to);
-
-            return \Yii::$app->response->redirect(['hotels/search',
-                'AvailabilityApi' => [
+            $mainForm = [
+                'PreviewForm' => [
                     'destination' => $this->destination,
                     'date_from' => $dateFrom->format('Y-m-d'),
                     'date_to' => $dateTo->format('Y-m-d'),
@@ -93,7 +92,10 @@ class MainSearchForm extends Model
                     'adults' => $this->adults,
                     'children' => $this->children
                 ]
-            ]);
+            ];
+            $session = \Yii::$app->session;
+            $session->set('main_form', $mainForm);
+            return \Yii::$app->response->redirect(['/hotels/search']);
 
         }
 

@@ -52,7 +52,7 @@ class HotelApiQuery extends ApiQuery implements ApiQueryInterface
     {
         $this->response = json_decode($this->response, $assoc = true);
         $this->response = $this->response['hotel'];
-        return $this;
+        return $this->response;
         // TODO: Implement asArray() method.
     }
 

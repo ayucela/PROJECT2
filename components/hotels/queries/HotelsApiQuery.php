@@ -18,7 +18,7 @@ class HotelsApiQuery extends ApiQuery implements ApiQueryInterface
     const QUERY_PREFIX = '?';
     const QUERY_URL = '/hotel-content-api/1.0/hotels';
 
-    public $codes=[];
+    public $codes;
     public $fields;
     public $destinationCode;
     public $countryCode;
@@ -47,7 +47,7 @@ class HotelsApiQuery extends ApiQuery implements ApiQueryInterface
     {
         return [
 
-            [['destinationCode', 'countryCode', 'lastUpdateTime', 'language', 'from', 'to', 'useSecondaryLanguage', 'fields' ], 'string']
+            [['codes','destinationCode', 'countryCode', 'lastUpdateTime', 'language', 'from', 'to', 'useSecondaryLanguage', 'fields' ], 'string']
         ];
     }
 
@@ -62,7 +62,8 @@ class HotelsApiQuery extends ApiQuery implements ApiQueryInterface
     public function asArray()
     {
         $this->response = json_decode($this->response, $assoc = true);
-        return $this;
+
+        return $this->response;
         // TODO: Implement asArray() method.
     }
 

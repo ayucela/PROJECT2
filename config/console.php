@@ -45,8 +45,8 @@ $config = [
                 ]
             ],
         ],
-        'db' => $db_local,
-        //'db' => $db_server
+        //'db' => $db_local,
+        'db' => $db_server,
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],

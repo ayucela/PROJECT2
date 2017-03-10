@@ -11,6 +11,7 @@ namespace app\models\api;
 
 use app\components\hotels\ApiClient;
 use app\components\hotels\helpers\HotelGridPreview;
+use app\components\hotels\helpers\HotelsPreviewHelper;
 use app\components\hotels\queries\availability\Destination;
 use app\components\hotels\queries\availability\Occupancies;
 use app\components\hotels\queries\availability\Stay;
@@ -83,10 +84,9 @@ class AvailabilityApi extends Model implements ApiModelInterface
 
     private function hotelDetails($apiResponse){
 
-        foreach ($apiResponse->hotels->hotels as $hotel){
-            $hotelsPreviews[] = HotelGridPreview::findHotel($hotel->code);
-        }
-        dd($hotelsPreviews);
+
+            $hotelsPreviews[] = HotelsPreviewHelper::findHotels($apiResponse);
+
         return $hotelsPreviews;
 
     }

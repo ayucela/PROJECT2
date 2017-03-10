@@ -22,6 +22,7 @@ use yii\helpers\Html;
         'type' => 'image/x-icon',
         'href' => '/favicon.ico',
     ]);?>
+    <script type='text/javascript' src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en&amp;key=AIzaSyCCXJXpXm16BasVRPAFvmB9HJsonnLjVVc"></script>
 
 </head>
 <body>
@@ -34,4 +35,5 @@ use yii\helpers\Html;
 </body>
 
 </html>
+
 <?php $this->endPage() ?>
