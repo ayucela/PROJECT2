@@ -15,12 +15,13 @@
         <div>
             <div>
                 <h4 class="box-title"><?=$model['name']?><small><i class="soap-icon-departure yellow-color"></i> <?=$model['country']?>,<?=' '.$model['city']?></small></h4>
-                <div class="amenities">
-                    <i class="soap-icon-wifi circle"></i>
-                    <i class="soap-icon-fitnessfacility circle"></i>
-                    <i class="soap-icon-fork circle"></i>
-                    <i class="soap-icon-television circle"></i>
+                <div class="five-stars-container no-back-star">
+                    <span class="star-<?=$model['category']?>" style="width: 80%;" data-toggle="tooltip" data-placement="bottom"
+                          data-original-title="<?=$model['category']?>-star hotel"></span>
                 </div>
+                <?=\app\modules\main\components\widgets\FacilityIcon::widget([
+                    'hotel_code' => $model['code']
+                ])?>
             </div>
             <div>
                 <div class="five-stars-container">
@@ -32,7 +33,7 @@
         <div>
             <p><?= \yii\helpers\StringHelper::truncateWords($model['description'], 30)?></p>
             <div>
-                <span class="price"><small>AVG/NIGHT</small>$620</span>
+                <span class="price"><small>AVG/NIGHT</small><?=$model['price']?></span>
                 <a class="button btn-small full-width text-center" title="" href="hotel-detailed.html">SELECT</a>
             </div>
         </div>

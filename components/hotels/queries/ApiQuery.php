@@ -16,6 +16,11 @@ abstract class ApiQuery extends Model implements ApiQueryInterface
 {
     const QUERY_PREFIX = '?';
 
+    public $fields;
+    public $language;
+    public $from;
+    public $to;
+
     private $apiKey;
     private $sharedSecret;
     protected $url;
@@ -46,8 +51,11 @@ abstract class ApiQuery extends Model implements ApiQueryInterface
 
     public function addParams(array $params = null)
     {
+
         if ($params && is_array($params)) {
+
             $this->setAttributes($params);
+
         }
         return $this;
     }
@@ -65,6 +73,8 @@ abstract class ApiQuery extends Model implements ApiQueryInterface
         }
         return $this;
     }
+
+
 
 
 

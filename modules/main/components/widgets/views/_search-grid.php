@@ -15,7 +15,7 @@
         <div class="details">
                                                 <span class="price">
                                                     <small>avg/night</small>
-                                                    $620
+                                                    <?=$model['price']?>
                                                  </span>
 
             <div class = "box-title-container">

@@ -49,6 +49,7 @@ class HotelsPreviewHelper extends Component
             $model->limit = $model->to - $model->from;
         }
         $model->availability = $availability;
+
         if($model->preview) {
             return $model->preview;
         } return false;
@@ -60,9 +61,11 @@ class HotelsPreviewHelper extends Component
         $this->hotelCodes = $this->getHotelCodes();
         $this->hotels = $this->getHotels();
         foreach ($this->hotels->hotels as $hotel){
+
            $preview[] = $this->getHotelPreview($hotel);
         }
         if($preview){
+
             return $preview;
         }
         return false;
@@ -73,14 +76,14 @@ class HotelsPreviewHelper extends Component
     {
         if($this->availability && is_object($this->availability)){
             foreach ($this->availability->hotels->hotels as $hotel){
-                $hotelCodes[] = $hotel->code;
+                $average =($hotel->maxRate+$hotel->minRate)/2;
+                $hotelData['code'] = $hotel->code;
+                $hotelData['price'] = $average.' '.$hotel->currency;
+
+                $searchData[] = $hotelData;
             }
 
-            if($this->limit){
-                $hotelCodes = array_slice($hotelCodes, $this->from, $this->limit);
-            }
-
-            return $hotelCodes ? $hotelCodes : false;
+            return $searchData ? $searchData : false;
         }
         return false;
 
@@ -90,9 +93,10 @@ class HotelsPreviewHelper extends Component
     {
 
         if($this->hotelCodes){
+            $codes = array_column($this->hotelCodes, 'code');
             $hotels = ApiClient::query(HotelsApiQuery::className())
                 ->addParams([
-                    'codes'=>implode(', ',$this->hotelCodes),
+                    'codes'=>implode(', ',$codes),
                 ])
                 ->get()
                 ->response();
@@ -104,6 +108,14 @@ class HotelsPreviewHelper extends Component
     {
 
         if($hotel) {
+
+            foreach($this->hotelCodes as $hotelCode){
+                if($hotelCode['code']==$hotel->code){
+                    $price = $hotelCode['price'];
+                }
+            }
+
+
             return [
                 'code'=>$hotel->code,
                 'name'=>$hotel->name->content,
@@ -113,7 +125,9 @@ class HotelsPreviewHelper extends Component
                 'longitude'=>$hotel->coordinates->longitude,
                 'latitude'=>$hotel->coordinates->latitude,
                 'category'=>$this->getCategory($hotel->categoryCode),
-                'view'=>self::IMAGE_URL.$this->generalView($hotel->images)
+                'price' => $price,
+                'view'=>self::IMAGE_URL.$this->generalView($hotel->images),
+                //'facilities' => $this->getFacilities($hotel->facilities)
             ];
 
         } else
@@ -136,6 +150,21 @@ class HotelsPreviewHelper extends Component
         } else
             return false;
     }
+
+    private function getFacilities($hotelFacilities)
+    {
+
+        foreach ($hotelFacilities as $facility) {
+            $facilities[] = [
+                'code' => $facility->facilityCode,
+                'facilityGroupCode' => $facility->facilityGroupCode,
+
+            ];
+        }
+
+        return FacilityHelper::findFacilities($facilities);
+    }
+
 
 
     public function getView()

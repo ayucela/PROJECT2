@@ -2567,7 +2567,7 @@ blockquote.style2:before, blockquote.style2:after {
 .five-stars-container .five-stars.transparent-bg, .five-stars-container.editable-rating .ui-slider-range.transparent-bg {
   background: none;
 }
-.five-stars-container:before {
+.five-stars-container:not(.no-back-star):before {
   display: block;
   position: absolute;
   top: 0;

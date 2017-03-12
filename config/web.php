@@ -98,6 +98,9 @@ $config = [
             'url' => 'https://api.test.hotelbeds.com',
             'apiKey' => 'zm6v9tgf8yyebd829yshbyh5',
             'sharedSecret' => 'rBZ7Y2GXhW',
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
         ]
 
 

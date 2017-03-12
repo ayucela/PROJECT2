@@ -12,7 +12,7 @@ use yii\helpers\Html;
     <div id="main">
         <div class="row">
             <div class="col-sm-4 col-md-3">
-                <h4 class="search-results-title"><i class="soap-icon-search"></i><b>1,984</b> results found.</h4>
+                <h4 class="search-results-title"><i class="soap-icon-search"></i><b><?=count($preview)?></b> results found.</h4>
                 <div class="toggle-container filters-container">
                     <div class="panel style1 arrow-right">
                         <h4 class="panel-title">
@@ -22,8 +22,8 @@ use yii\helpers\Html;
                             <div class="panel-content">
                                 <div id="price-range"></div>
                                 <br />
-                                <span class="min-price-label pull-left"></span>
-                                <span class="max-price-label pull-right"></span>
+                                <span class="min-price-label pull-left" id="min-price" data-filter = <?= $filteredMinMax['min']?>><?=$minMax['min']?></span>
+                                <span class="max-price-label pull-right" id="max-price" data-filter = <?= $filteredMinMax['max']?>><?=$minMax['max']?></span>
                                 <div class="clearer"></div>
                             </div><!-- end content -->
                         </div>
@@ -160,8 +160,8 @@ use yii\helpers\Html;
 
                    <?= \app\modules\main\components\widgets\SearchView::widget([
                         'preview' => $preview,
-                        'viewType' => $viewType,
-                        'pageSize' => 6
+                        'viewType' => $viewType['name'],
+                        'pageSize' => $viewType['perPage']
                        ])?>
 
                 <a href="#" class="uppercase full-width button btn-large">load more listing</a>

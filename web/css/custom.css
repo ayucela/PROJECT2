@@ -17,4 +17,30 @@
     object-position: top center;
 }
 
+.five-stars-container .star-1:before{
+    content: "\e006";
+    color: #fdb714;
+}
+
+.five-stars-container .star-2:before{
+    content: "\e006\e006";
+    color: #fdb714;
+}
+
+.five-stars-container .star-3:before{
+    content: "\e006\e006\e006";
+    color: #fdb714;
+}
+
+.five-stars-container .star-4:before{
+    content: "\e006\e006\e006\e006";
+    color: #fdb714;
+}
+
+.five-stars-container .star-5:before{
+    content: "\e006\e006\e006\e006\e006";
+    color: #fdb714;
+}
+
+
 

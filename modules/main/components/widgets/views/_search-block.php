@@ -13,9 +13,9 @@
         </figure>
         <div class="details">
             <a title="View all" href="hotel-detailed.html" class="pull-right button uppercase">select</a>
-            <h4 class="box-title"><?= \yii\helpers\StringHelper::truncateWords($model['description'], 20)?></h4>
+            <h4 class="box-title"><?= \yii\helpers\StringHelper::truncateWords($model['name'], 20)?></h4>
             <label class="price-wrapper">
-                <span class="price-per-unit">$620</span>avg/night
+                <span class="price-per-unit"><?=$model['price']?></span>avg/night
             </label>
         </div>
     </article>
