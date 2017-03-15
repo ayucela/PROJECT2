@@ -115,10 +115,10 @@ class HotelsPreviewHelper extends Component
                 }
             }
 
-
             return [
                 'code'=>$hotel->code,
                 'name'=>$hotel->name->content,
+                'accommodation'=>$hotel->accommodationTypeCode,
                 'description'=>$hotel->description->content,
                 'country'=>$hotel->countryCode,
                 'city'=>$hotel->city->content,

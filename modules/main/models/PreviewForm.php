@@ -15,7 +15,9 @@ use app\components\hotels\queries\availability\Destination;
 use app\components\hotels\queries\availability\Occupancies;
 use app\components\hotels\queries\availability\Stay;
 use app\components\hotels\queries\AvailabilityApiQuery;
+use app\modules\main\components\filter\FilterFactory;
 use yii\base\Model;
+use yii\web\HttpException;
 
 class PreviewForm extends Model
 {
@@ -36,21 +38,28 @@ class PreviewForm extends Model
     public $date_to;
     public $price_from;
     public $price_to;
-    public $userRating;
-    public $accomodation;
-    public $amenity;
+    public $accommodation;
+    public $amenities;
     public $language;
+    private $minmax;
 
 
     private $hotels;
+    private $preview;
+    private $filterPrice;
+    private $filterAccomodation;
+    private $filterAmenities;
+    private $mainAttributes;
+    private $oldMainAttributes;
 
     public function rules()
     {
         return [
             [['destination', 'date_from', 'date_to', 'language'], 'string'],
             [['destinationZone', 'hotelCode','rooms', 'adults', 'children', 'price_from',
-              'price_to', 'userRating', 'accomodation', 'amenity'], 'integer'],
-            [['destination', 'date_from', 'date_to', 'rooms', 'adults', 'children'], 'required']
+              'price_to'], 'integer'],
+            [['destination', 'date_from', 'date_to', 'rooms', 'adults', 'children'], 'required'],
+            [['accommodation', 'amenities'], 'safe']
         ];
     }
 
@@ -72,37 +81,183 @@ class PreviewForm extends Model
             'price_from' => \Yii::t('app', 'Price From'),
             'price_to' => \Yii::t('app', 'Price To'),
             'userRating' => \Yii::t('app', 'User Rating'),
-            'accomodation' => \Yii::t('app', 'Accomodations'),
-            'amenity'=>\Yii::t('app', 'Amenity'),
+            'accommodation' => \Yii::t('app', 'Accommodations'),
+            'amenities'=>\Yii::t('app', 'Amenity'),
             'language'=>\Yii::t('app', 'Language')
         ];
     }
 
-    public function preview()
+
+    public function prepare()
     {
-        return HotelsPreviewHelper::findHotels($this->availability());
+
+        $this->mainAttributes = [
+                'destination' => $this->destination,
+                'date_from' => $this->date_from,
+                'date_to' => $this->date_to,
+                'rooms' => $this->rooms,
+                'adults' => $this->adults,
+                'children' => $this->children,
+        ];
+
+        $this->setPreview();
+
+
+
+
+
+        $this->setMinMax();
+
+        $this->filter();
+
+        if(!$this->price_from || !$this->price_to){
+            $this->setPrice();
+        }
+
+        \Yii::$app->cache->set('attr', $this->mainAttributes);
+
+        if($this->preview){
+          return true;
+        } else
+            throw new HttpException(503, 'Preview not set!');
+    }
+
+    public function getPreview()
+    {
+        return $this->preview;
+    }
+
+    public function getMinMax()
+    {
+        return $this->minmax;
+    }
+
+    private function setPreview()
+    {
+
+        if($this->isChanged()) {
+
+            $this->preview = HotelsPreviewHelper::findHotels($this->availability());
+            \Yii::$app->cache->set('preview', $this->preview);
+        } else
+
+            if(\Yii::$app->cache->get('preview')){
+
+                $this->preview = \Yii::$app->cache->get('preview');
+
+            } else {
+               $this->preview = HotelsPreviewHelper::findHotels($this->availability());
+                \Yii::$app->cache->set('preview', $this->preview);
+            };
 
     }
 
     private function availability()
     {
-
-        return  ApiClient::query(AvailabilityApiQuery::className())
+        return ApiClient::query(AvailabilityApiQuery::className())
             ->addDestination(new Destination([
                 'code' => $this->destination
             ]))
             ->addStay(new Stay([
                 'checkIn' => $this->date_from,
-                'checkOut'=> $this->date_to,
+                'checkOut' => $this->date_to,
             ]))
             ->addOccupancies(new Occupancies([
-                'rooms'=>$this->rooms,
-                'adults'=>$this->adults,
-                'children'=>$this->children
+                'rooms' => $this->rooms,
+                'adults' => $this->adults,
+                'children' => $this->children
             ]))
             ->post()
             ->response();
     }
+
+    private function setMinMax()
+    {
+        if($this->preview && is_array($this->preview)) {
+
+            foreach ($this->preview as $item) {
+                $prices[] = explode(' ', $item['price'])[0];
+            }
+
+
+            $this->minmax =  [
+                'min' => round(min($prices) * 0.99),
+                'max' => round(max($prices) * 1.01)
+            ];
+        } return false;
+    }
+
+    private function setFilterPrice(){
+        if($this->price_from && $this->price_to){
+            $this->filterPrice = [
+                'price' => [
+                    'minPrice' => $this->price_from,
+                    'maxPrice' => $this->price_to,
+                ]
+            ];
+            return true;
+        } else
+            return false;
+    }
+
+    private function setFilterAccommodations(){
+
+        if($this->accommodation){
+            $accommodation = explode(',',$this->accommodation);
+            $this->filterAccomodation = [
+                'accs' => $accommodation
+            ];
+            return true;
+        } else
+            return false;
+    }
+
+    private function setFilterAmenities(){
+        if($this->amenities && is_array($this->amenities)){
+            $this->filterAmenities = [
+                'facility' => $this->amenities
+            ];
+            return true;
+        } else
+            return false;
+    }
+
+    private function setPrice()
+    {
+        $this->price_from = $this->minmax['min'];
+        $this->price_to = $this->minmax['max'];
+    }
+
+    private function filter()
+    {
+
+        if($this->setFilterPrice()){
+
+            $this->preview = FilterFactory::create($this->preview, $this->filterPrice);
+        }
+        if($this->setFilterAccommodations()){
+            $this->preview = FilterFactory::create($this->preview, $this->filterAccomodation);
+        }
+        if($this->setFilterAmenities()){
+            $this->preview = FilterFactory::create($this->preview, $this->filterAmenities);
+        }
+    }
+
+    private function isChanged(){
+        $oldAttributes = \Yii::$app->cache->get('attr');
+
+        if(isset($oldAttributes)) {
+            $result = array_diff($this->mainAttributes, $oldAttributes);
+
+            if (empty($result)) {
+                return false;
+            } else
+                return true;
+        } else
+            return true;
+    }
+
+
 
 
 

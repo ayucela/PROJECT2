@@ -11,9 +11,13 @@ namespace app\modules\main\components\filter;
 
 use app\modules\main\models\PreviewForm;
 
-class PriceFilter extends PreviewFilter
+class PriceFilter extends PreviewFilter implements PreviewFilterInterface
 {
     public $price = [];
+
+    public function setPreview($preview){
+        $this->preview = $preview;
+    }
 
     public function setParams($param)
     {
@@ -36,6 +40,7 @@ class PriceFilter extends PreviewFilter
 
             $filterPrice = function($elem) use ($price) {
                 $hotelPrice = explode(' ', $elem['price'])[0];
+
                 if($hotelPrice <= $price['maxPrice'] && $hotelPrice >= $price['minPrice']){
                     return $elem;
                 }

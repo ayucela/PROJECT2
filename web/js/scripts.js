@@ -4,14 +4,24 @@
  */
 
 tjq(document).ready(function() {
+
+
+    if(sessionStorage.getItem('accs')){
+        accs = JSON.parse(sessionStorage.getItem('accs'));
+        console.log(accs);
+        accs.forEach(function(item, i){
+
+            tjq("li[data-code='" + item.trim() + "']").addClass('active');
+        });
+    }
     minPrice = parseInt(tjq('#min-price').text());
     maxPrice = parseInt(tjq('#max-price').text());
-    filteredMinPrice = parseInt(tjq('#min-price').data('filter')) ?
-        parseInt(tjq('#min-price').data('filter')) : minPrice;
-    filteredMaxPrice = parseInt(tjq('#max-price').data('filter')) ?
-        parseInt(tjq('#max-price').data('filter')) : maxPrice;
 
-    console.log(filteredMaxPrice);
+    filteredMinPrice = tjq('#previewform-price_from').val();
+    filteredMaxPrice = tjq('#previewform-price_to').val();
+
+
+
     tjq("#price-range").slider({
         min: minPrice,
         max: maxPrice,
@@ -22,23 +32,42 @@ tjq(document).ready(function() {
             tjq("#max-price").text(tjq("#price-range").slider("values", 1));
         },
         stop: function (event, ui) {
-            tjq("#min-price").text(tjq("#price-range").slider("values", 0));
-            tjq("#max-price").text(tjq("#price-range").slider("values", 1));
-            tjq.ajax({
-                url: '/main/hotels/filter-ajax',
-                type: 'post',
-                data: {
-                    'price': {
-                        'minPrice': tjq("#price-range").slider("values", 0),
-                        'maxPrice': tjq("#price-range").slider("values", 1)
-                    }
-                }
-            })
+
+            tjq('#previewform-price_from').val(tjq("#price-range").slider("values", 0));
+            tjq('#previewform-price_to').val(tjq("#price-range").slider("values", 1));
+
+            tjq('#preview-form').submit();
+
         },
         step: 100
     });
-    tjq('#price-range').slider("values", filteredMinPrice, filteredMaxPrice);
-    tjq("#min-price").text(filteredMinPrice);
-    tjq("#max-price").text(filteredMaxPrice);
+    //tjq('#price-range').slider("values", filteredMinPrice, filteredMaxPrice);
+
+
+
+    tjq('#accomodations-filter').on('click', 'li', function(){
+        accs=[];
+
+        active =  tjq('#accomodations-filter').find('.active');
+        active.each(function(item){
+          accs.push(tjq(this).data('code'));
+        });
+
+       tjq('#previewform-accommodation').val(accs);
+        tjq('#preview-form').submit();
+    });
+
+    tjq('#amenities-filter').on('click', 'li', function(){
+        amenities =[];
+
+        active =  tjq('#amenities-filter').find('.active');
+        active.each(function(item){
+            amenities.push(tjq(this).data('code'));
+        });
+        console.log(amenities);
+        tjq('#previewform-amenities').val(amenities);
+        tjq('#preview-form').submit();
+    });
+
 
 });

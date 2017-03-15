@@ -11,10 +11,26 @@ namespace app\modules\main\components\filter;
 
 use yii\base\Component;
 
-abstract class PreviewFilter extends Component
+abstract class PreviewFilter extends Component implements PreviewFilterInterface
 {
     public $preview;
-    abstract public function setParams($param);
-    abstract public function getResult();
+    public function setPreview($preview){
+        $this->preview = $preview;
+    }
+
+    public function setParams($param)
+    {
+
+        $this->price = $param;
+
+        // TODO: Implement setParams() method.
+    }
+
+    public function getResult()
+    {
+        return $this->useFilter();
+        // TODO: Implement getResult() method.
+    }
+
     abstract protected function useFilter();
 }

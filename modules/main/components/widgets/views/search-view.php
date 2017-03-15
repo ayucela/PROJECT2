@@ -6,15 +6,16 @@
  * Time: 5:46
  */
 ?>
+
 <?php if($viewType == '_search-list') : ?>
-    <div class="hotel-list listing-style3 hotel"
+    <div class="hotel-list listing-style3 hotel" id="view-content">
 <?php endif; ?>
 <?php if($viewType == '_search-grid') : ?>
-    <div class="hotel-list">
+    <div class="hotel-list" id="view-content">
         <div class="row image-box hotel listing-style1">
 <?php endif; ?>
 <?php if($viewType == '_search-block') : ?>
-    <div class="hotel-list">
+    <div class="hotel-list" id="view-content">
         <div class="row image-box listing-style2">
 <?php endif; ?>
 
@@ -23,6 +24,7 @@
         'summary' => false,
         'itemView' => $viewType,
     ]);?>
+
     </div>
 <?php if($viewType == '_search-grid' || $viewType == '_search-block' )  : ?>
     </div>

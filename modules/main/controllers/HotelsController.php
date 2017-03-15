@@ -11,9 +11,11 @@ use app\components\hotels\queries\availability\Occupancies;
 use app\components\hotels\queries\AvailabilityApiQuery;
 use app\components\hotels\queries\HotelApiQuery;
 use app\components\hotels\queries\HotelsApiQuery;
+use app\components\hotels\queries\types\AccomodationsQuery;
 use app\components\hotels\queries\types\FacilitiesQuery;
 use app\models\api\AvailabilityApi;
 use app\models\api\HotelsApi;
+use app\modules\main\components\filter\FilterFactory;
 use app\modules\main\components\filter\PriceFilter;
 use app\modules\main\models\MainSearchForm;
 use app\modules\main\models\PreviewForm;
@@ -65,73 +67,87 @@ class HotelsController extends Controller
     {
         $session=\Yii::$app->session;
         $cache = \Yii::$app->cache;
-
-        $view = $this->getSearchView($view);
         if($session['main_form']){
             $params = $session['main_form'];
             unset($session['main_form']);
         }
 
 
-
+        $view = $this->getSearchView($view);
 
         if(\Yii::$app->request->post()) {
-
                 $params = \Yii::$app->request->post();
-
         }
-
         if($params) {
-          // dd($params);
-            $model = new PreviewForm();
-            if ($model->load($params)) {
-                $preview = $model->preview();
+
+            if($params && is_array($params)) {
+                $model = new PreviewForm();
+                if ($model->load($params)) {
+
+                    try {
+                        $model->prepare();
+
+                    } catch (Exception $e){
+                        throw $e;
+                    }
+
+                }
+                $cache->set('model', $model);
             }
-            $cache->set('preview', $preview);
+           /* if($filter && isset($filter) && is_array($filter)) {
+               $preview = FilterFactory::create($cache->get('start-preview'), $filter);
 
-
+                $cache->set('preview', $preview);
+                $filteredMinMax = $this->previewMinMax($preview);
+                $cache->set('filtered-min-max', $filteredMinMax);
+            }*/
         } else {
-            $preview = $cache->get('preview');
+            $model = $cache->get('model');
 
         }
-        $minMax = $this->previewMinMax($preview);
 
+       // dd($filter);
+       /* if($filter && isset($filter) && is_array($filter)){
 
-        if($filter){
             $filterParams = $filter;
 
-            $filter = new PriceFilter([
-                'preview'=>$preview
-            ]);
+            $preview = FilterFactory::create($cache->get('start-preview'), $filterParams);
 
-
-            $filter->setParams($filterParams);
-            $preview = $filter->getResult();
+            $cache->set('preview', $preview);
             $filteredMinMax = $this->previewMinMax($preview);
-        }
+            $cache->set('filtered-min-max', $filteredMinMax);
 
+        }*/
 
         return $this->render('search', [
-           'preview' => $preview,
+           'model' => $model,
            'viewType' => $view,
-           'minMax' => $minMax,
-           'filteredMinMax'=>$filteredMinMax
         ]);
     }
 
     public function actionFilterAjax()
     {
         if(\Yii::$app->request->isAjax){
-            $filterParams = \Yii::$app->request->post();
-            return $this->redirect(['search', 'filter'=>$filterParams]);
+            $filterParams = \Yii::$app->request->get();
+
+            dd($filterParams);
+            $view = $filterParams['view'];
+            unset($filterParams['view']);
+            foreach ($filterParams as $key=>$value){
+
+                if(!$value || !isset($value)){
+                    $filterParams = null;
+                }
+            }
+
+            return $this->redirect(['search',  'filter'=>$filterParams, 'view' => $view]);
         }
     }
 
     public function actionApiTest()
     {
-        $facilities = FacilityHelper::findFacilities(1075);
-        dd($facilities);
-       $client = ApiClient::query(FacilitiesQuery::className())
+
+       $client = ApiClient::query(AccomodationsQuery::className())
                     ->addParams([
                         'language'=>'ENG',
                         'from' => '1',
@@ -167,16 +183,6 @@ class HotelsController extends Controller
         ];
     }
 
-    private function previewMinMax($preview)
-    {
-        foreach($preview as $item){
-            $prices[]=explode(' ', $item['price'])[0];
-        }
 
-        return [
-            'min' => round(min($prices)*0.99),
-            'max' => round(max($prices)*1.01)
-        ];
-    }
 
 }
