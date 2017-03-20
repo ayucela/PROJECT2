@@ -14,5 +14,5 @@ use yii\base\Object;
 
 class Hotels extends Object implements AvailabilityOptionsInterface
 {
-    public $hotels;
+    public $hotel;
 }

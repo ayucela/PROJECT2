@@ -33,6 +33,8 @@ class HotelApiQuery extends ApiQuery implements ApiQueryInterface
 
     public function setHotel($hotel_code)
     {
+        $hotel_code = (int)$hotel_code;
+
         if($hotel_code && is_integer($hotel_code)){
 
             $this->hotel_code = $hotel_code;

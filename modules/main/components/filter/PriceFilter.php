@@ -46,6 +46,8 @@ class PriceFilter extends PreviewFilter implements PreviewFilterInterface
                 }
             };
             return array_filter($this->preview, $filterPrice);
+        } else {
+            return $this->preview;
         }
 
     }

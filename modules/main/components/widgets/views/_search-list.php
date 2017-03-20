@@ -34,7 +34,7 @@
             <p><?= \yii\helpers\StringHelper::truncateWords($model['description'], 30)?></p>
             <div>
                 <span class="price"><small>AVG/NIGHT</small><?=$model['price']?></span>
-                <a class="button btn-small full-width text-center" title="" href="hotel-detailed.html">SELECT</a>
+                <?=\yii\helpers\Html::a('SELECT', ['/hotels/view', 'code'=>$model['code']],['class'=>'button btn-small full-width text-center'])?>
             </div>
         </div>
     </div>

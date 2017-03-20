@@ -18,6 +18,7 @@ return [
         ['pattern'=>'', 'route'=>'/main/site/index'],
         ['pattern'=>'/hotels/result', 'route' => '/main/hotels/result'],
         ['pattern'=>'/hotels/search', 'route' => '/main/hotels/search'],
+        ['pattern'=>'/hotels/view', 'route' => '/main/hotels/view'],
         ['pattern'=>'/page/<slug>', 'route'=>'/main/page/view'],
 
     ],

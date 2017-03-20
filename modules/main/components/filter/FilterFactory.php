@@ -31,6 +31,7 @@ class FilterFactory extends Object
                 };
             }
             $filter->preview = $preview;
+
             if ($filter) {
                 $filter->params = $params;
                 return $filter->result;

@@ -17,7 +17,6 @@ class FacilityFilter extends PreviewFilter implements PreviewFilterInterface
     public $facilities = [];
     public function setParams($param)
     {
-
         $this->facilities = $param;
 
         // TODO: Implement setParams() method.
@@ -26,12 +25,13 @@ class FacilityFilter extends PreviewFilter implements PreviewFilterInterface
     protected function useFilter()
     {
         if($this->facilities){
-            $facilities = $this->facilities;
+            $facilities = $this->facilities['facility'];
 
 
             if($facilities) {
                 $filterFacility = function ($elem) use ($facilities) {
                     foreach ($facilities as $item) {
+
                         $cache_key = 'facility'.$elem['code'];
                         if(\Yii::$app->cache->get($cache_key)){
                             $allFacilities = \Yii::$app->cache->get($cache_key);
@@ -43,12 +43,15 @@ class FacilityFilter extends PreviewFilter implements PreviewFilterInterface
                         }
 
                         foreach ($allFacilities as $allItem){
-                            if($item == $allItem){
+
+                            if($item == $allItem['description']){
+
                                 return $elem;
                             }
                         }
                     }
                 };
+
                 return array_filter($this->preview, $filterFacility);
             }
             return false;

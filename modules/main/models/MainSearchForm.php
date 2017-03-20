@@ -81,13 +81,12 @@ class MainSearchForm extends Model
     public function send()
     {
         if ($this->validate()) {
-            $dateFrom = \DateTime::createFromFormat("m/d/Y", $this->date_from);
-            $dateTo = \DateTime::createFromFormat("m/d/Y", $this->date_to);
+
             $mainForm = [
                 'PreviewForm' => [
                     'destination' => $this->destination,
-                    'date_from' => $dateFrom->format('Y-m-d'),
-                    'date_to' => $dateTo->format('Y-m-d'),
+                    'date_from' => $this->date_from,
+                    'date_to' => $this->date_to,
                     'rooms' => $this->rooms,
                     'adults' => $this->adults,
                     'children' => $this->children

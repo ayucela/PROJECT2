@@ -52,6 +52,8 @@ class PreviewForm extends Model
     private $mainAttributes;
     private $oldMainAttributes;
 
+
+
     public function rules()
     {
         return [
@@ -88,6 +90,7 @@ class PreviewForm extends Model
     }
 
 
+
     public function prepare()
     {
 
@@ -102,13 +105,11 @@ class PreviewForm extends Model
 
         $this->setPreview();
 
-
-
-
-
         $this->setMinMax();
 
         $this->filter();
+
+      //  dd($this->preview);
 
         if(!$this->price_from || !$this->price_to){
             $this->setPrice();
@@ -130,6 +131,11 @@ class PreviewForm extends Model
     public function getMinMax()
     {
         return $this->minmax;
+    }
+
+    public function getMainAttributes()
+    {
+        return $this->mainAttributes;
     }
 
     private function setPreview()
@@ -154,13 +160,16 @@ class PreviewForm extends Model
 
     private function availability()
     {
+      //dd($this);
+        $dateFrom = \DateTime::createFromFormat("m/d/Y", $this->date_from);
+        $dateTo = \DateTime::createFromFormat("m/d/Y", $this->date_to);
         return ApiClient::query(AvailabilityApiQuery::className())
             ->addDestination(new Destination([
                 'code' => $this->destination
             ]))
             ->addStay(new Stay([
-                'checkIn' => $this->date_from,
-                'checkOut' => $this->date_to,
+                'checkIn' => $dateFrom->format('Y-m-d'),
+                'checkOut' => $dateTo->format('Y-m-d'),
             ]))
             ->addOccupancies(new Occupancies([
                 'rooms' => $this->rooms,
@@ -207,16 +216,20 @@ class PreviewForm extends Model
             $this->filterAccomodation = [
                 'accs' => $accommodation
             ];
+
             return true;
         } else
             return false;
     }
 
     private function setFilterAmenities(){
-        if($this->amenities && is_array($this->amenities)){
+
+        if($this->amenities){
+            $amenities = explode(',',$this->amenities);
             $this->filterAmenities = [
-                'facility' => $this->amenities
+                'facility' => $amenities
             ];
+
             return true;
         } else
             return false;
@@ -231,16 +244,20 @@ class PreviewForm extends Model
     private function filter()
     {
 
-        if($this->setFilterPrice()){
+        if ($this->setFilterPrice()) {
 
             $this->preview = FilterFactory::create($this->preview, $this->filterPrice);
         }
-        if($this->setFilterAccommodations()){
+
+        if ($this->setFilterAccommodations()) {
             $this->preview = FilterFactory::create($this->preview, $this->filterAccomodation);
         }
-        if($this->setFilterAmenities()){
+
+        if ($this->setFilterAmenities()) {
+
             $this->preview = FilterFactory::create($this->preview, $this->filterAmenities);
         }
+
     }
 
     private function isChanged(){

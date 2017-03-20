@@ -27,7 +27,7 @@
             </div>
             <p class="description"><?= \yii\helpers\StringHelper::truncate($model['description'], 300)?></p>
             <div class="action">
-                <a class="button btn-small" href="hotel-detailed.html">SELECT</a>
+                <?=\yii\helpers\Html::a('SELECT', ['/hotels/view', 'code'=>$model['code']],['class'=>'button btn-small full-width text-center'])?>
                 <a class="button btn-small yellow popup-map" href="#" data-box="<<?=$model['latitude']?>, <?=$model['longitude']?>">VIEW ON MAP</a>
             </div>
         </div>

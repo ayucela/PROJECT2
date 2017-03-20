@@ -42,7 +42,9 @@ class AvailabilityApiQuery extends ApiQuery implements ApiQueryInterface
 
      public function addHotels(Hotels $hotels)
      {
+
          $this->hotels = $hotels;
+
          return $this;
      }
 
@@ -97,11 +99,16 @@ class AvailabilityApiQuery extends ApiQuery implements ApiQueryInterface
 
     private function body()
     {
+
         foreach ($this->attributes as $key => $item){
             if($item){
+
                 $this->body[$key] = $item;
             }
         }
+
+
+
         return $this->body;
     }
 

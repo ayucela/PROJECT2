@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b1b60ea850fb4314b1e6317b094026c7",
-    "content-hash": "5e974e1568cc62f116f7a9a15210b1c5",
+    "hash": "dfab86ce5c9712be20b7bc41f0406855",
+    "content-hash": "128ab3c654ae73100a082a6ae7f0df07",
     "packages": [
         {
             "name": "bower-asset/admin-lte",
@@ -160,16 +160,16 @@
         },
         {
             "name": "bower-asset/blueimp-load-image",
-            "version": "v2.11.0",
+            "version": "v2.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blueimp/JavaScript-Load-Image.git",
-                "reference": "a3eef97b679c41b29bd6dcd0319a96c044b14a72"
+                "reference": "caf36d45d843b38b8763cb4a921d7ce51681a08c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/a3eef97b679c41b29bd6dcd0319a96c044b14a72",
-                "reference": "a3eef97b679c41b29bd6dcd0319a96c044b14a72",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/caf36d45d843b38b8763cb4a921d7ce51681a08c",
+                "reference": "caf36d45d843b38b8763cb4a921d7ce51681a08c",
                 "shasum": ""
             },
             "type": "bower-asset-library"
@@ -241,16 +241,16 @@
         },
         {
             "name": "bower-asset/bxslider-4",
-            "version": "v4.2.7",
+            "version": "v4.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stevenwanderski/bxslider-4.git",
-                "reference": "bdf9d7f8722f753004993bfff3da20a86f68c862"
+                "reference": "090b9e26731607c50a331eda73979dcd365c6e32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stevenwanderski/bxslider-4/zipball/bdf9d7f8722f753004993bfff3da20a86f68c862",
-                "reference": "bdf9d7f8722f753004993bfff3da20a86f68c862",
+                "url": "https://api.github.com/repos/stevenwanderski/bxslider-4/zipball/090b9e26731607c50a331eda73979dcd365c6e32",
+                "reference": "090b9e26731607c50a331eda73979dcd365c6e32",
                 "shasum": ""
             },
             "require": {
@@ -281,6 +281,50 @@
                 "javascript",
                 "jquery",
                 "library"
+            ]
+        },
+        {
+            "name": "bower-asset/flexslider",
+            "version": "2.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/woocommerce/FlexSlider.git",
+                "reference": "0690ec27fbeaa8b99bf171e0836b2959ce9f08b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/woocommerce/FlexSlider/zipball/0690ec27fbeaa8b99bf171e0836b2959ce9f08b9",
+                "reference": "0690ec27fbeaa8b99bf171e0836b2959ce9f08b9",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.11.3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "jquery.flexslider.js",
+                    "flexslider.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests",
+                    "demo"
+                ]
+            },
+            "license": [
+                "GPLv2 and later"
+            ],
+            "description": "An awesome, fully responsive jQuery slider toolkit.",
+            "keywords": [
+                "automattic",
+                "flexslider",
+                "jquery",
+                "slider",
+                "woothemes"
             ]
         },
         {
@@ -616,16 +660,16 @@
         },
         {
             "name": "codemix/yii2-localeurls",
-            "version": "1.4.6",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemix/yii2-localeurls.git",
-                "reference": "f080c39eec2e989173f3c10f3fba36f3043bdd2f"
+                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/f080c39eec2e989173f3c10f3fba36f3043bdd2f",
-                "reference": "f080c39eec2e989173f3c10f3fba36f3043bdd2f",
+                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
+                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
                 "shasum": ""
             },
             "require": {
@@ -653,7 +697,7 @@
                 "locale",
                 "yii2"
             ],
-            "time": "2017-01-09 12:26:05"
+            "time": "2017-03-07 18:41:22"
         },
         {
             "name": "container-interop/container-interop",
@@ -688,20 +732,23 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.8.0",
+            "version": "v4.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4",
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "^1.1"
             },
             "type": "library",
             "autoload": {
@@ -728,20 +775,20 @@
             "keywords": [
                 "html"
             ],
-            "time": "2016-07-16 12:58:58"
+            "time": "2017-03-13 06:30:53"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "04a6d1a00ea5da0727ee94309a9f0d3dbaecb569"
+                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/04a6d1a00ea5da0727ee94309a9f0d3dbaecb569",
-                "reference": "04a6d1a00ea5da0727ee94309a9f0d3dbaecb569",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/0d6c7ca039329247e4f0f8f8f6506810e8248855",
+                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
                 "shasum": ""
             },
             "require": {
@@ -793,7 +840,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-21 01:20:32"
+            "time": "2017-02-27 10:51:17"
         },
         {
             "name": "hotelbeds/hotel-api-sdk-php",
@@ -801,12 +848,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hotelbeds-sdk/hotel-api-sdk-php.git",
-                "reference": "99c2761265c1f4371defd2b05b468a412635c9ca"
+                "reference": "eb20d247b2a9930b5ec12b1e7620d845588d030e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hotelbeds-sdk/hotel-api-sdk-php/zipball/99c2761265c1f4371defd2b05b468a412635c9ca",
-                "reference": "99c2761265c1f4371defd2b05b468a412635c9ca",
+                "url": "https://api.github.com/repos/hotelbeds-sdk/hotel-api-sdk-php/zipball/eb20d247b2a9930b5ec12b1e7620d845588d030e",
+                "reference": "eb20d247b2a9930b5ec12b1e7620d845588d030e",
                 "shasum": ""
             },
             "require": {
@@ -841,7 +888,7 @@
                 }
             ],
             "description": "Hotelbeds Hotel-API SDK for PHP",
-            "time": "2016-12-19 10:34:17"
+            "time": "2017-03-02 23:56:03"
         },
         {
             "name": "intervention/image",
@@ -2231,16 +2278,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.35",
+            "version": "1.0.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "dda7f3ab94158a002d9846a97dc18ebfb7acc062"
+                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/dda7f3ab94158a002d9846a97dc18ebfb7acc062",
-                "reference": "dda7f3ab94158a002d9846a97dc18ebfb7acc062",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
+                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
                 "shasum": ""
             },
             "require": {
@@ -2310,7 +2357,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-02-09 11:33:58"
+            "time": "2017-03-18 16:02:30"
         },
         {
             "name": "league/glide",
@@ -2443,16 +2490,16 @@
         },
         {
             "name": "linslin/yii2-curl",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/linslin/Yii2-Curl.git",
-                "reference": "76acf39b2b8e6f01bdc0b4a3c76269fe3a4824e1"
+                "reference": "e417de6512b76aa618e4fb838172e9add266f9f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/linslin/Yii2-Curl/zipball/76acf39b2b8e6f01bdc0b4a3c76269fe3a4824e1",
-                "reference": "76acf39b2b8e6f01bdc0b4a3c76269fe3a4824e1",
+                "url": "https://api.github.com/repos/linslin/Yii2-Curl/zipball/e417de6512b76aa618e4fb838172e9add266f9f1",
+                "reference": "e417de6512b76aa618e4fb838172e9add266f9f1",
                 "shasum": ""
             },
             "require": {
@@ -2489,7 +2536,7 @@
                 "restful",
                 "yii2"
             ],
-            "time": "2017-03-03 15:03:29"
+            "time": "2017-03-08 23:18:37"
         },
         {
             "name": "nicmart/string-template",
@@ -2633,16 +2680,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "a90da6dd679605d88c9803a57a6fc1fb7a19a6e0"
+                "reference": "c57009887010eb4e58bfca2970314a5b820b24b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/a90da6dd679605d88c9803a57a6fc1fb7a19a6e0",
-                "reference": "a90da6dd679605d88c9803a57a6fc1fb7a19a6e0",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/c57009887010eb4e58bfca2970314a5b820b24b9",
+                "reference": "c57009887010eb4e58bfca2970314a5b820b24b9",
                 "shasum": ""
             },
             "require": {
@@ -2682,7 +2729,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16 22:46:52"
+            "time": "2017-03-04 12:23:14"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -3664,27 +3711,27 @@
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.8.2",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
-                "reference": "99b528e01276054458da9553b587cfb959dfa436"
+                "reference": "b71641582297eab52753b72cd4eb45a5ded4485c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/99b528e01276054458da9553b587cfb959dfa436",
-                "reference": "99b528e01276054458da9553b587cfb959dfa436",
+                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/b71641582297eab52753b72cd4eb45a5ded4485c",
+                "reference": "b71641582297eab52753b72cd4eb45a5ded4485c",
                 "shasum": ""
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
-                "php": "^5.5 || ^7.0",
-                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+                "php": "^5.6 || ^7.0",
+                "zendframework/zend-stdlib": "^2.7.6 || ^3.1"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^6.0.8 || ^5.7.15",
                 "zendframework/zend-cache": "^2.6.1",
+                "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.6",
                 "zendframework/zend-db": "^2.7",
                 "zendframework/zend-filter": "^2.6",
@@ -3696,20 +3743,20 @@
                 "zendframework/zend-uri": "^2.5"
             },
             "suggest": {
-                "zendframework/zend-db": "Zend\\Db component",
+                "zendframework/zend-db": "Zend\\Db component, required by the (No)RecordExists validator",
                 "zendframework/zend-filter": "Zend\\Filter component, required by the Digits validator",
-                "zendframework/zend-i18n": "Zend\\I18n component to allow translation of validation error messages as well as to use the various Date validators",
+                "zendframework/zend-i18n": "Zend\\I18n component to allow translation of validation error messages",
                 "zendframework/zend-i18n-resources": "Translations of validator messages",
-                "zendframework/zend-math": "Zend\\Math component",
+                "zendframework/zend-math": "Zend\\Math component, required by the Csrf validator",
                 "zendframework/zend-servicemanager": "Zend\\ServiceManager component to allow using the ValidatorPluginManager and validator chains",
-                "zendframework/zend-session": "Zend\\Session component",
+                "zendframework/zend-session": "Zend\\Session component, required by the Csrf validator",
                 "zendframework/zend-uri": "Zend\\Uri component, required by the Uri and Sitemap\\Loc validators"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev",
-                    "dev-develop": "2.9-dev"
+                    "dev-master": "2.9-dev",
+                    "dev-develop": "2.10-dev"
                 },
                 "zf": {
                     "component": "Zend\\Validator",
@@ -3731,7 +3778,7 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2017-01-29 17:24:24"
+            "time": "2017-03-17 10:15:50"
         }
     ],
     "packages-dev": [

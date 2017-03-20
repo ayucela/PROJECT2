@@ -6,6 +6,7 @@ use app\components\hotels\ApiClient;
 use app\components\hotels\availability\AvailabilityOptionsInterface;
 use app\components\hotels\ContentApiClient;
 use app\components\hotels\helpers\FacilityHelper;
+use app\components\hotels\hotel\Hotel;
 use app\components\hotels\HotelsSearch;
 use app\components\hotels\queries\availability\Occupancies;
 use app\components\hotels\queries\AvailabilityApiQuery;
@@ -46,16 +47,6 @@ class HotelsController extends Controller
     const BLOCK_VIEW = 9;
 
     /**
-     * Hotelbeds API return action
-     * @return string
-     */
-    public function actionResult()
-    {
-
-        dd(\Yii::$app->request->post());
-    }
-
-    /**
      * Search and filter hotels
      * @return string
      */
@@ -78,6 +69,7 @@ class HotelsController extends Controller
         if(\Yii::$app->request->post()) {
                 $params = \Yii::$app->request->post();
         }
+
         if($params) {
 
             if($params && is_array($params)) {
@@ -91,33 +83,18 @@ class HotelsController extends Controller
                         throw $e;
                     }
 
+
                 }
                 $cache->set('model', $model);
             }
-           /* if($filter && isset($filter) && is_array($filter)) {
-               $preview = FilterFactory::create($cache->get('start-preview'), $filter);
 
-                $cache->set('preview', $preview);
-                $filteredMinMax = $this->previewMinMax($preview);
-                $cache->set('filtered-min-max', $filteredMinMax);
-            }*/
         } else {
             $model = $cache->get('model');
 
         }
 
-       // dd($filter);
-       /* if($filter && isset($filter) && is_array($filter)){
+        $session->set('preview-main', $model->getMainAttributes());
 
-            $filterParams = $filter;
-
-            $preview = FilterFactory::create($cache->get('start-preview'), $filterParams);
-
-            $cache->set('preview', $preview);
-            $filteredMinMax = $this->previewMinMax($preview);
-            $cache->set('filtered-min-max', $filteredMinMax);
-
-        }*/
 
         return $this->render('search', [
            'model' => $model,
@@ -125,24 +102,22 @@ class HotelsController extends Controller
         ]);
     }
 
-    public function actionFilterAjax()
+    public function actionView($code)
     {
-        if(\Yii::$app->request->isAjax){
-            $filterParams = \Yii::$app->request->get();
 
-            dd($filterParams);
-            $view = $filterParams['view'];
-            unset($filterParams['view']);
-            foreach ($filterParams as $key=>$value){
+        $hotel = \Yii::createObject([
+            'class' => Hotel::className(),
+            'code' => $code
+        ]);
+        $hotel->setHotelParams();
 
-                if(!$value || !isset($value)){
-                    $filterParams = null;
-                }
-            }
-
-            return $this->redirect(['search',  'filter'=>$filterParams, 'view' => $view]);
-        }
+        return $this->render('view', compact('hotel'));
     }
+
+
+
+
+
 
     public function actionApiTest()
     {

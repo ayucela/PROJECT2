@@ -12,7 +12,7 @@
             <a href="ajax/slideshow-popup.html" title="" class="hover-effect popup-gallery"><img src="<?= $model['view']?>" alt="" width="270" height="160" /></a>
         </figure>
         <div class="details">
-            <a title="View all" href="hotel-detailed.html" class="pull-right button uppercase">select</a>
+            <?=\yii\helpers\Html::a('SELECT', ['/hotels/view', 'code'=>$model['code']],['class'=>'button btn-small full-width text-center'])?>
             <h4 class="box-title"><?= \yii\helpers\StringHelper::truncateWords($model['name'], 20)?></h4>
             <label class="price-wrapper">
                 <span class="price-per-unit"><?=$model['price']?></span>avg/night
