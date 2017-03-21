@@ -17,6 +17,8 @@ class Rooms extends Widget
     public $model;
     public $hotelCode;
 
+
+
     public function init()
     {
         $this->model = new RoomsForm();
@@ -35,15 +37,22 @@ class Rooms extends Widget
             unset($params['RoomsForm']['destination']);
         }
 
-        if(\Yii::$app->request->post()){
+
+
+        if(\Yii::$app->request->post() && !empty(\Yii::$app->request->post())){
             $params = \Yii::$app->request->post();
             unset(\Yii::$app->session['preview-main']);
         }
 
+
+
+
         if($params){
+
             if($this->model->load($params)){
 
                $this->model->rooms();
+
 
             }
         }

@@ -156,7 +156,7 @@ FlexsliderAsset::register($this);
                         </div>
                         <div class="tab-pane fade" id="hotel-availability">
                             <?= \app\modules\main\components\widgets\Rooms::widget([
-                                'hotelCode' => $hotel->code
+                               'hotelCode' => $hotel->code
                             ])?>
 
                         </div>

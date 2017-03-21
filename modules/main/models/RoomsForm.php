@@ -10,11 +10,13 @@ namespace app\modules\main\models;
 
 
 use app\components\hotels\ApiClient;
+use app\components\hotels\helpers\RoomFacilityHelper;
 use app\components\hotels\hotel\Hotel;
 use app\components\hotels\queries\availability\Hotels;
 use app\components\hotels\queries\availability\Occupancies;
 use app\components\hotels\queries\AvailabilityApiQuery;
 use app\components\hotels\queries\HotelApiQuery;
+use app\components\hotels\hotel\Room;
 use hotelbeds\hotel_api_sdk\model\Stay;
 use yii\base\Model;
 
@@ -26,6 +28,12 @@ class RoomsForm extends Model
     public $adults;
     public $children;
     public $hotelCode;
+
+
+    private $availableRooms = [];
+    private $responseRooms = [];
+
+
 
     public function rules()
     {
@@ -62,23 +70,36 @@ class RoomsForm extends Model
         $avaliability = $this->getAvailability();
         if($avaliability && is_object($avaliability)){
             $hotel = reset($avaliability->hotels->hotels);
-            $availableRooms = $hotel->rooms;
-            dd($availableRooms);
-            $roomsInfo = $this->getHotelRooms();
+            $this->responseRooms = $hotel->rooms;
+            $this->getHotelRooms();
+            return true;
+        } else
+            return false;
+    }
 
-
-        }
+    public function getAvailableRooms()
+    {
+        return $this->availableRooms;
     }
 
     private function getHotelRooms()
     {
-        $hotel = ApiClient::query(HotelApiQuery::className())
-            ->setHotel($this->hotelCode)
-            ->get()
-            ->response();
-        dd($hotel);
-        if($hotel && is_object($hotel)){
+        if($this->responseRooms && is_array($this->responseRooms)){
+            foreach($this->responseRooms as $room){
+                $this->availableRooms[] = \Yii::createObject([
+                    'class' => Room::className(),
+                    'date_from' => $this->date_from,
+                    'date_to' => $this->date_to,
+                    'rooms' => $this->rooms,
+                    'adults' => $this->adults,
+                    'children' => $this->children,
+                    'hotelCode' => $this->hotelCode,
+                    'roomCode' => $room->code,
+                    'name' =>$room->name,
+                    'rates' => $room->rates
+                ]);
 
+            }
         }
     }
 

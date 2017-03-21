@@ -8,6 +8,7 @@
 
 use yii\widgets\ActiveForm;
 ?>
+
 <?php $form = ActiveForm::begin([
     'id' => 'rooms-form',
     'enableClientValidation' => true,
@@ -90,137 +91,57 @@ use yii\widgets\ActiveForm;
 <?php ActiveForm::end()?>
 <h2>Available Rooms</h2>
 <div class="room-list listing-style3 hotel">
+
+    <?php foreach($model->availableRooms as $room) : ?>
+
     <article class="box">
         <figure class="col-sm-4 col-md-3">
-            <a class="hover-effect popup-gallery" href="ajax/slideshow-popup.html" title=""><img width="230" height="160" src="http://placehold.it/230x160" alt=""></a>
+            <a class="hover-effect popup-gallery" href="ajax/slideshow-popup.html" title=""><img width="230" height="160" src="<?=\app\components\hotels\hotel\Room::IMAGE_URL.$room->images[0]->path?>" alt=""></a>
         </figure>
         <div class="details col-xs-12 col-sm-8 col-md-9">
             <div>
                 <div>
-                    <div class="box-title">
-                        <h4 class="title">Standard Family Room</h4>
-                        <dl class="description">
-                            <dt>Max Guests:</dt>
-                            <dd>3 persons</dd>
-                        </dl>
-                    </div>
-                    <div class="amenities">
-                        <i class="soap-icon-wifi circle"></i>
-                        <i class="soap-icon-fitnessfacility circle"></i>
-                        <i class="soap-icon-fork circle"></i>
-                        <i class="soap-icon-television circle"></i>
+                    <div>
+                        <div class="box-title">
+                            <h4 class="title"><?=$room->name?></h4>
+                            <dl class="description">
+                                <dt>Rooms:</dt>
+                                <dd><?=$room->rooms?>&nbsp;rooms</dd>
+                                <dt>Adults:</dt>
+                                <dd><?=$room->adults?>&nbsp;persons</dd>
+                                <?php if($room->children) : ?>
+                                    <dt>Children:</dt>
+                                    <dd><?=$room->children?>&nbsp;children</dd>
+                                <?php endif;?>
+                            </dl>
+                        </div>
+                        <div class="amenities">
+                            <i class="soap-icon-wifi circle"></i>
+                            <i class="soap-icon-fitnessfacility circle"></i>
+                            <i class="soap-icon-fork circle"></i>
+                            <i class="soap-icon-television circle"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="price-section">
+
+            </div>
+            <div>
+
+                <div class="action-section">
+                    <div style = "display: inline-block">
+                    <span class="board">BB</span>
                     <span class="price"><small>PER/NIGHT</small>$121</span>
-                </div>
-            </div>
-            <div>
-                <p>Nunc cursus libero purus ac congue ar lorem cursus ut sed vitae pulvinar massa idend porta nequetiam elerisque mi id, consectetur adipi deese cing elit maus fringilla bibe endum.</p>
-                <div class="action-section">
                     <a href="hotel-booking.html" title="" class="button btn-small full-width text-center">BOOK NOW</a>
+                        </div>
+                    <div style = "display: inline-block">
+                        <span class="price"><small>PER/NIGHT</small>$121</span>
+                        <a href="hotel-booking.html" title="" class="button btn-small full-width text-center">BOOK NOW</a>
+                    </div>
                 </div>
             </div>
         </div>
     </article>
-    <article class="box">
-        <figure class="col-sm-4 col-md-3">
-            <a class="hover-effect popup-gallery" href="ajax/slideshow-popup.html" title=""><img width="230" height="160" src="http://placehold.it/230x160" alt=""></a>
-        </figure>
-        <div class="details col-xs-12 col-sm-8 col-md-9">
-            <div>
-                <div>
-                    <div class="box-title">
-                        <h4 class="title">Superior Double Room</h4>
-                        <dl class="description">
-                            <dt>Max Guests:</dt>
-                            <dd>5 persons</dd>
-                        </dl>
-                    </div>
-                    <div class="amenities">
-                        <i class="soap-icon-wifi circle"></i>
-                        <i class="soap-icon-fitnessfacility circle"></i>
-                        <i class="soap-icon-fork circle"></i>
-                        <i class="soap-icon-television circle"></i>
-                    </div>
-                </div>
-                <div class="price-section">
-                    <span class="price"><small>PER/NIGHT</small>$241</span>
-                </div>
-            </div>
-            <div>
-                <p>Nunc cursus libero purus ac congue ar lorem cursus ut sed vitae pulvinar massa idend porta nequetiam elerisque mi id, consectetur adipi deese cing elit maus fringilla bibe endum.</p>
-                <div class="action-section">
-                    <a href="hotel-booking.html" title="" class="button btn-small full-width text-center">BOOK NOW</a>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="box">
-        <figure class="col-sm-4 col-md-3">
-            <a class="hover-effect popup-gallery" href="ajax/slideshow-popup.html" title=""><img width="230" height="160" src="http://placehold.it/230x160" alt=""></a>
-        </figure>
-        <div class="details col-xs-12 col-sm-8 col-md-9">
-            <div>
-                <div>
-                    <div class="box-title">
-                        <h4 class="title">Deluxe Single Room</h4>
-                        <dl class="description">
-                            <dt>Max Guests:</dt>
-                            <dd>4 persons</dd>
-                        </dl>
-                    </div>
-                    <div class="amenities">
-                        <i class="soap-icon-wifi circle"></i>
-                        <i class="soap-icon-fitnessfacility circle"></i>
-                        <i class="soap-icon-fork circle"></i>
-                        <i class="soap-icon-television circle"></i>
-                    </div>
-                </div>
-                <div class="price-section">
-                    <span class="price"><small>PER/NIGHT</small>$137</span>
-                </div>
-            </div>
-            <div>
-                <p>Nunc cursus libero purus ac congue ar lorem cursus ut sed vitae pulvinar massa idend porta nequetiam elerisque mi id, consectetur adipi deese cing elit maus fringilla bibe endum.</p>
-                <div class="action-section">
-                    <a href="hotel-booking.html" title="" class="button btn-small full-width text-center">BOOK NOW</a>
-                </div>
-            </div>
-        </div>
-    </article>
-    <article class="box">
-        <figure class="col-sm-4 col-md-3">
-            <a class="hover-effect popup-gallery" href="ajax/slideshow-popup.html" title=""><img width="230" height="160" src="http://placehold.it/230x160" alt=""></a>
-        </figure>
-        <div class="details col-xs-12 col-sm-8 col-md-9">
-            <div>
-                <div>
-                    <div class="box-title">
-                        <h4 class="title">Single Bed Room</h4>
-                        <dl class="description">
-                            <dt>Max Guests:</dt>
-                            <dd>2 persons</dd>
-                        </dl>
-                    </div>
-                    <div class="amenities">
-                        <i class="soap-icon-wifi circle"></i>
-                        <i class="soap-icon-fitnessfacility circle"></i>
-                        <i class="soap-icon-fork circle"></i>
-                        <i class="soap-icon-television circle"></i>
-                    </div>
-                </div>
-                <div class="price-section">
-                    <span class="price"><small>PER/NIGHT</small>$55</span>
-                </div>
-            </div>
-            <div>
-                <p>Nunc cursus libero purus ac congue ar lorem cursus ut sed vitae pulvinar massa idend porta nequetiam elerisque mi id, consectetur adipi deese cing elit maus fringilla bibe endum.</p>
-                <div class="action-section">
-                    <a href="hotel-booking.html" title="" class="button btn-small full-width text-center">BOOK NOW</a>
-                </div>
-            </div>
-        </div>
-    </article>
+    <?php endforeach; ?>
+
     <a href="#" class="load-more button full-width btn-large fourty-space">LOAD MORE ROOMS</a>
 </div>
