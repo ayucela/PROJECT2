@@ -79,7 +79,7 @@ class Room extends Component
 
     }
 
-    public function getRoomRate()
+    public function getRoomRates()
     {
         return $this->roomRate;
     }

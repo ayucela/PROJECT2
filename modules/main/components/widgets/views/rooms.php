@@ -116,10 +116,8 @@ use yii\widgets\ActiveForm;
                             </dl>
                         </div>
                         <div class="amenities">
-                            <i class="soap-icon-wifi circle"></i>
-                            <i class="soap-icon-fitnessfacility circle"></i>
-                            <i class="soap-icon-fork circle"></i>
-                            <i class="soap-icon-television circle"></i>
+
+                            <?=\app\modules\main\components\widgets\RoomFacilities::widget(['facilities' => $room->facilities])?>
                         </div>
                     </div>
                 </div>
@@ -128,15 +126,17 @@ use yii\widgets\ActiveForm;
             <div>
 
                 <div class="action-section">
-                    <div style = "display: inline-block">
-                    <span class="board">BB</span>
-                    <span class="price"><small>PER/NIGHT</small>$121</span>
-                    <a href="hotel-booking.html" title="" class="button btn-small full-width text-center">BOOK NOW</a>
+
+
+                    <?php foreach($room->roomRates as $rate) : ?>
+                        <div class="prices" style = "display: inline-block">
+                                <span class="board"><?= $rate->boardName?></span>
+                                <span class="price"><small>PER/NIGHT</small><?= $rate->netPrice?></span>
+                                <?=\yii\helpers\Html::a('BOOK NOW', ['/hotels/booking', 'rateKey'=>$rate->rateKey], ['class'=> 'button btn-small full-width text-center']) ?>
                         </div>
-                    <div style = "display: inline-block">
-                        <span class="price"><small>PER/NIGHT</small>$121</span>
-                        <a href="hotel-booking.html" title="" class="button btn-small full-width text-center">BOOK NOW</a>
-                    </div>
+                    <?php endforeach; ?>
+
+
                 </div>
             </div>
         </div>
