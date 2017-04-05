@@ -80,11 +80,15 @@ class MainSearchForm extends Model
      */
     public function send()
     {
+        $destination = explode(';', $this->destination);
+
+        $destination = explode('_', trim($destination[1]));
+
         if ($this->validate()) {
 
             $mainForm = [
                 'PreviewForm' => [
-                    'destination' => $this->destination,
+                    'destination' => $destination[1],
                     'date_from' => $this->date_from,
                     'date_to' => $this->date_to,
                     'rooms' => $this->rooms,

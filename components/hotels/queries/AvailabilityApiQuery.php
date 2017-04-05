@@ -15,6 +15,7 @@ use app\components\hotels\queries\availability\Geolocation;
 use app\components\hotels\queries\availability\Hotels;
 use app\components\hotels\queries\availability\Occupancies;
 
+use app\components\hotels\queries\availability\Review;
 use app\components\hotels\queries\availability\Stay;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
@@ -30,6 +31,7 @@ class AvailabilityApiQuery extends ApiQuery implements ApiQueryInterface
     public $destination;
     public $hotels;
     public $geolocation;
+    public $reviews=[];
     public $language;
 
     private $body = [];
@@ -52,6 +54,12 @@ class AvailabilityApiQuery extends ApiQuery implements ApiQueryInterface
     {
          $this->occupancies[] = $occupancies;
          return $this;
+    }
+
+    public function addReview(Review $review)
+    {
+        $this->reviews[] = $review;
+        return $this;
     }
 
     public function addGeolocation(Geolocation $geolocation)
@@ -106,8 +114,6 @@ class AvailabilityApiQuery extends ApiQuery implements ApiQueryInterface
                 $this->body[$key] = $item;
             }
         }
-
-
 
         return $this->body;
     }

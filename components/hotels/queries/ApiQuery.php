@@ -54,7 +54,7 @@ abstract class ApiQuery extends Model implements ApiQueryInterface
 
         if ($params && is_array($params)) {
 
-            $this->setAttributes($params);
+            $this->setAttributes($params, false);
 
         }
         return $this;

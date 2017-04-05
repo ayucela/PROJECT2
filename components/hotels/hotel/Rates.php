@@ -14,6 +14,7 @@ use yii\base\Component;
 class Rates extends  Component
 {
     public  $rateKey;
+    public  $rateClass;
     public  $rateType;
     public  $netPrice;
     public  $sellingPrice;
@@ -24,8 +25,4 @@ class Rates extends  Component
     public  $boardName;
     public  $cancelPrice;
     public  $cancelDate;
-
-
-
-
 }

@@ -11,6 +11,7 @@
         "bower-asset/bxslider-4": "*",
         "bower-asset/jquery.stellar": "*",
         "bower-asset/flexslider": "*",
+        "bower-asset/blueimp-bootstrap-image-gallery": "*",
         "codemix/yii2-localeurls": "^1.4",
         "trntv/yii2-file-kit": "^1.2",
         "intervention/image": "^2.1",

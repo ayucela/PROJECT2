@@ -50,6 +50,12 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'hotels' => [
+            'class' => 'app\components\hotels\ConfigApi',
+            'url' => 'https://api.test.hotelbeds.com',
+            'apiKey' => 'zm6v9tgf8yyebd829yshbyh5',
+            'sharedSecret' => 'rBZ7Y2GXhW',
+        ],
     ],
   //  'params' => $params,
     /*

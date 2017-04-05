@@ -12765,3 +12765,7 @@ input.input-text:focus, textarea:focus, .selector select:focus + .custom-select 
   border: 1px solid #01b7f2;
   box-shadow: 0 0 8px rgba(1, 183, 242, 0.6);
 }
+
+#search-result {
+  position: absolute;
+}

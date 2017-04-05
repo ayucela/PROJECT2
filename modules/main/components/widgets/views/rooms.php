@@ -94,6 +94,7 @@ use yii\widgets\ActiveForm;
 
     <?php foreach($model->availableRooms as $room) : ?>
 
+
     <article class="box">
         <figure class="col-sm-4 col-md-3">
             <a class="hover-effect popup-gallery" href="ajax/slideshow-popup.html" title=""><img width="230" height="160" src="<?=\app\components\hotels\hotel\Room::IMAGE_URL.$room->images[0]->path?>" alt=""></a>
@@ -130,9 +131,10 @@ use yii\widgets\ActiveForm;
 
                     <?php foreach($room->roomRates as $rate) : ?>
                         <div class="prices" style = "display: inline-block">
+                                <span class="rate-class"><?= $rate->rateClass?></span>
                                 <span class="board"><?= $rate->boardName?></span>
                                 <span class="price"><small>PER/NIGHT</small><?= $rate->netPrice?></span>
-                                <?=\yii\helpers\Html::a('BOOK NOW', ['/hotels/booking', 'rateKey'=>$rate->rateKey], ['class'=> 'button btn-small full-width text-center']) ?>
+                                <?=\yii\helpers\Html::a('BOOK NOW', ['/main/hotels/booking', 'rateKey'=>$rate->rateKey, 'paymentType' => $rate->paymentType], ['class'=> 'button btn-small full-width text-center']) ?>
                         </div>
                     <?php endforeach; ?>
 

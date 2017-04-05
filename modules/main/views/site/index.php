@@ -45,6 +45,7 @@ use yii\helpers\Html;
                             <input type="text" name="MainSearchForm[destination]"  id="mainsearchform-destination" class="input-text full-width" value placeholder="enter a destination or hotel name"
                             aria-required="true" aria-invalid="true"/>
                             <div class="help-block"><?= $searchForm->errors['destination'] ? $searchForm->errors['destination'][0] : ''?></div>
+                            <div id = "search-result" class ="hidden"></div>
                         </div>
 
                         <div class="form-group col-sm-6 col-md-4">

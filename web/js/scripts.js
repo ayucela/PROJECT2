@@ -69,5 +69,39 @@ tjq(document).ready(function() {
         tjq('#preview-form').submit();
     });
 
+    tjq('#mainsearchform-destination').on('input', function(){
+
+        searchStr = tjq('#mainsearchform-destination').val();
+
+        tjq.ajax({
+            url: '/main/site/search-ajax',
+            type: 'post',
+            data: {
+                search : searchStr
+            }
+        })
+            .done(
+                function(data){
+                    data.forEach(function(item, i){
+                        console.log(item);
+                        responseStr = "<p>"+item.country.name_en+";&nbsp;"+
+                            item.destination.name_en+"_"+item.destination.code+"</p>";
+                            tjq('#search-result').removeClass('hidden');
+                            tjq('#search-result').append(responseStr);
+                            tjq('#search-result').children().on('click', function(e){
+                                destination = tjq(this).text();
+                                tjq('#mainsearchform-destination').val(destination);
+                                tjq('#search-result').addClass('hidden').html('');
+
+                            });
+                    });
+                }
+            );
+        tjq('#search-result').addClass('hidden').html('');
+
+    })
+
+
+
 
 });

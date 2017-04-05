@@ -42,5 +42,28 @@
     color: #fdb714;
 }
 
+#search-result {
+    position: absolute;
+    max-height: 200px;
+    overflow-y: auto;
+    width:280px;
+    background-color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #f5f5f5;
+
+}
+#search-result p{
+      font-size: 0.9em;
+      line-height:1em;
+      margin-bottom:10px;
+}
+
+#search-result p:hover{
+    font-size: 1.03em;
+    color: #27A9D8;
+    margin-bottom:10px;
+    cursor: pointer;
+}
+
 
 

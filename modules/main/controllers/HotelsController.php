@@ -13,11 +13,15 @@ use app\components\hotels\queries\AvailabilityApiQuery;
 use app\components\hotels\queries\HotelApiQuery;
 use app\components\hotels\queries\HotelsApiQuery;
 use app\components\hotels\queries\types\AccomodationsQuery;
+use app\components\hotels\queries\types\CountriesQuery;
+use app\components\hotels\queries\types\DestinationsQuery;
 use app\components\hotels\queries\types\FacilitiesQuery;
 use app\models\api\AvailabilityApi;
 use app\models\api\HotelsApi;
+use app\models\search\CountrySearch;
 use app\modules\main\components\filter\FilterFactory;
 use app\modules\main\components\filter\PriceFilter;
+use app\modules\main\models\BookingForm;
 use app\modules\main\models\MainSearchForm;
 use app\modules\main\models\PreviewForm;
 use hotelbeds\hotel_api_sdk\helpers\Availability;
@@ -114,6 +118,49 @@ class HotelsController extends Controller
         return $this->render('view', compact('hotel'));
     }
 
+    public function actionBooking($rateKey, $paymentType)
+    {
+        if($paymentType == 'AT_WEB') {
+            $model = new BookingForm([
+                'scenario'=>'AT_WEB',
+                'rateKey' => $rateKey
+            ]);
+        } elseif ($paymentType == 'IN_HOTEL'){
+            $model = new BookingForm();
+        }
+        if($model->load(\Yii::$app->request->post())){
+            $response = $model->send();
+            \Yii::$app->session->set('booking', $response);
+            return $this->redirect('/main/hotels/booking-confirm');
+        }
+        return $this->render('booking', compact('model', 'paymentType'));
+    }
+
+    public function actionBookingConfirm()
+    {
+        $response = \Yii::$app->session->get('booking');
+        if ($response->booking->status == "CONFIRMED") {
+            // unset(\Yii::$app->session['booking']);
+            return $this->render('booking-confirm', compact('response'));
+        } else {
+            return $this->render('booking-fail', compact('response'));
+        }
+    }
+
+    public function actionSlideshowAjax($hotelCode)
+    {
+
+        $client =ApiClient::query(HotelApiQuery::className())
+            ->setHotel($hotelCode)
+            ->get()
+            ->response();
+        $images =  $client->images;
+
+
+
+
+        return $this->renderAjax('slideshow-ajax', compact('images'));
+    }
 
 
 
@@ -122,17 +169,15 @@ class HotelsController extends Controller
     public function actionApiTest()
     {
 
-       $client = ApiClient::query(AccomodationsQuery::className())
-                    ->addParams([
-                        'language'=>'ENG',
-                        'from' => '1',
-                        'to' => '500'
-                    ])
+       $client = ApiClient::query(HotelsApiQuery::className())
+                     ->addParams([
+                         'from' => '1',
+                         'to' => '1000'
+                     ])
                      ->get()
                      ->asArray();
 
         dd($client);
-
     }
 
     private function getSearchView($view=null)

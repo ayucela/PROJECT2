@@ -13,6 +13,7 @@ use app\components\hotels\ApiClient;
 use app\components\hotels\helpers\HotelsPreviewHelper;
 use app\components\hotels\queries\availability\Destination;
 use app\components\hotels\queries\availability\Occupancies;
+use app\components\hotels\queries\availability\Review;
 use app\components\hotels\queries\availability\Stay;
 use app\components\hotels\queries\AvailabilityApiQuery;
 use app\modules\main\components\filter\FilterFactory;
@@ -141,20 +142,10 @@ class PreviewForm extends Model
     private function setPreview()
     {
 
-        if($this->isChanged()) {
 
             $this->preview = HotelsPreviewHelper::findHotels($this->availability());
-            \Yii::$app->cache->set('preview', $this->preview);
-        } else
 
-            if(\Yii::$app->cache->get('preview')){
 
-                $this->preview = \Yii::$app->cache->get('preview');
-
-            } else {
-               $this->preview = HotelsPreviewHelper::findHotels($this->availability());
-                \Yii::$app->cache->set('preview', $this->preview);
-            };
 
     }
 

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dfab86ce5c9712be20b7bc41f0406855",
-    "content-hash": "128ab3c654ae73100a082a6ae7f0df07",
+    "hash": "68f198d64d323dfac563f045e5cdc20b",
+    "content-hash": "468ee9ae7ca669700b0552dc5d882e78",
     "packages": [
         {
             "name": "bower-asset/admin-lte",
@@ -80,6 +80,22 @@
             }
         },
         {
+            "name": "bower-asset/blueimp-bootstrap-image-gallery",
+            "version": "v3.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/Bootstrap-Image-Gallery.git",
+                "reference": "23e43b98c8dc4d6b3c83e5814b4bff1578011756"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/Bootstrap-Image-Gallery/zipball/23e43b98c8dc4d6b3c83e5814b4bff1578011756",
+                "reference": "23e43b98c8dc4d6b3c83e5814b4bff1578011756",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
+        {
             "name": "bower-asset/blueimp-canvas-to-blob",
             "version": "v3.7.0",
             "source": {
@@ -97,16 +113,16 @@
         },
         {
             "name": "bower-asset/blueimp-file-upload",
-            "version": "v9.17.0",
+            "version": "v9.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blueimp/jQuery-File-Upload.git",
-                "reference": "aaeb8c38e9dc87b02e672f57658c4111943ac44b"
+                "reference": "0b4af3c57b86b3c7147c4d7c75deb71a0133f0e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/aaeb8c38e9dc87b02e672f57658c4111943ac44b",
-                "reference": "aaeb8c38e9dc87b02e672f57658c4111943ac44b",
+                "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/0b4af3c57b86b3c7147c4d7c75deb71a0133f0e3",
+                "reference": "0b4af3c57b86b3c7147c4d7c75deb71a0133f0e3",
                 "shasum": ""
             },
             "require": {
@@ -660,16 +676,16 @@
         },
         {
             "name": "codemix/yii2-localeurls",
-            "version": "1.4.9",
+            "version": "1.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemix/yii2-localeurls.git",
-                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe"
+                "reference": "9afafc5a660f10a4e9f7d7254a0779222c71323e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
-                "reference": "84c08d6ba1bc499c2d54ce066add9a8362f8efbe",
+                "url": "https://api.github.com/repos/codemix/yii2-localeurls/zipball/9afafc5a660f10a4e9f7d7254a0779222c71323e",
+                "reference": "9afafc5a660f10a4e9f7d7254a0779222c71323e",
                 "shasum": ""
             },
             "require": {
@@ -697,7 +713,7 @@
                 "locale",
                 "yii2"
             ],
-            "time": "2017-03-07 18:41:22"
+            "time": "2017-03-23 18:56:49"
         },
         {
             "name": "container-interop/container-interop",
@@ -779,16 +795,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/0d6c7ca039329247e4f0f8f8f6506810e8248855",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
             "require": {
@@ -840,7 +856,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-27 10:51:17"
+            "time": "2017-03-20 17:10:46"
         },
         {
             "name": "hotelbeds/hotel-api-sdk-php",
@@ -848,12 +864,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hotelbeds-sdk/hotel-api-sdk-php.git",
-                "reference": "eb20d247b2a9930b5ec12b1e7620d845588d030e"
+                "reference": "77c13c37ff1254b029c3e1f70afba59ed8c34cec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hotelbeds-sdk/hotel-api-sdk-php/zipball/eb20d247b2a9930b5ec12b1e7620d845588d030e",
-                "reference": "eb20d247b2a9930b5ec12b1e7620d845588d030e",
+                "url": "https://api.github.com/repos/hotelbeds-sdk/hotel-api-sdk-php/zipball/77c13c37ff1254b029c3e1f70afba59ed8c34cec",
+                "reference": "77c13c37ff1254b029c3e1f70afba59ed8c34cec",
                 "shasum": ""
             },
             "require": {
@@ -888,7 +904,7 @@
                 }
             ],
             "description": "Hotelbeds Hotel-API SDK for PHP",
-            "time": "2017-03-02 23:56:03"
+            "time": "2017-03-15 15:23:47"
         },
         {
             "name": "intervention/image",
@@ -1060,16 +1076,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.3.8",
+            "version": "v4.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "219447a8c21b1c82e534dc2e6a73386933fc9c5e"
+                "reference": "4aec9b00de25b4b3cca1f11ffbaa823c67c33590"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/219447a8c21b1c82e534dc2e6a73386933fc9c5e",
-                "reference": "219447a8c21b1c82e534dc2e6a73386933fc9c5e",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/4aec9b00de25b4b3cca1f11ffbaa823c67c33590",
+                "reference": "4aec9b00de25b4b3cca1f11ffbaa823c67c33590",
                 "shasum": ""
             },
             "type": "library",
@@ -1109,7 +1125,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-02-21 06:45:16"
+            "time": "2017-04-02 18:38:08"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -2278,16 +2294,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.36",
+            "version": "1.0.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297"
+                "reference": "78b5cc4feb61a882302df4fbaf63b7662e5e4ccd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
-                "reference": "d9c1698582dfbfbd092ec9c5c3325f862cdb3297",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/78b5cc4feb61a882302df4fbaf63b7662e5e4ccd",
+                "reference": "78b5cc4feb61a882302df4fbaf63b7662e5e4ccd",
                 "shasum": ""
             },
             "require": {
@@ -2357,7 +2373,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-03-18 16:02:30"
+            "time": "2017-03-22 15:43:14"
         },
         {
             "name": "league/glide",
@@ -2490,16 +2506,16 @@
         },
         {
             "name": "linslin/yii2-curl",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/linslin/Yii2-Curl.git",
-                "reference": "e417de6512b76aa618e4fb838172e9add266f9f1"
+                "reference": "853e27b120d09b27c1bdf628191a48e2ab07d113"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/linslin/Yii2-Curl/zipball/e417de6512b76aa618e4fb838172e9add266f9f1",
-                "reference": "e417de6512b76aa618e4fb838172e9add266f9f1",
+                "url": "https://api.github.com/repos/linslin/Yii2-Curl/zipball/853e27b120d09b27c1bdf628191a48e2ab07d113",
+                "reference": "853e27b120d09b27c1bdf628191a48e2ab07d113",
                 "shasum": ""
             },
             "require": {
@@ -2511,7 +2527,7 @@
                 "codeception/specify": "~0.4.3",
                 "codeception/verify": "~0.3.1",
                 "guzzlehttp/guzzle": ">=4.1.4 <7.0",
-                "mcustiel/phiremock-codeception-extension": "*"
+                "mcustiel/phiremock-codeception-extension": "1.2.4"
             },
             "type": "yii2-extension",
             "autoload": {
@@ -2536,7 +2552,7 @@
                 "restful",
                 "yii2"
             ],
-            "time": "2017-03-08 23:18:37"
+            "time": "2017-03-29 08:53:22"
         },
         {
             "name": "nicmart/string-template",

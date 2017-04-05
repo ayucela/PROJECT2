@@ -695,6 +695,15 @@ $this->beginContent('@app/modules/main/views/layouts/_clear.php')
         </div>
     </div>
 </div>
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-start-slideshow="true" data-filter=":even">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
 <!-- END MAIN SLIDER-->
 <!-- CONTENT -->
 <section id="content">

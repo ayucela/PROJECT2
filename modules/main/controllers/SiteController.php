@@ -2,9 +2,12 @@
 
 namespace app\modules\main\controllers;
 
+use app\models\search\CountrySearch;
+use app\models\search\DestinationSearch;
 use app\modules\main\models\MainSearchForm;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
+use yii\web\Response;
 
 /**
  * Default controller for the `main` module
@@ -35,5 +38,27 @@ class SiteController extends Controller
         }
        // VarDumper::dump('Test main');
         return $this->render('index', compact('searchForm'));
+    }
+
+    public function actionSearchAjax()
+    {
+        $response = \Yii::$app->request->post();
+        if (\Yii::$app->request->isAjax) {
+            $searchModel = new DestinationSearch();
+
+            $dataProvider = $searchModel->search($response['search']);
+            $destinations = $dataProvider->models;
+
+            $result=[];
+            $searchResult =[];
+            foreach($destinations as $destination){
+                $result['country'] = $destination->country;
+                $result['destination'] = $destination;
+                $searchResult[] = $result;
+            }
+
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            return $searchResult;
+        }
     }
 }

@@ -38,8 +38,11 @@ class MainAsset extends AssetBundle
         'app\modules\main\assets\FontAwesomeAsset',
         'app\modules\main\assets\AnimateJsAsset',
         'app\modules\main\assets\RevoAsset',
+        'app\modules\main\assets\FlexsliderAsset',
         'app\modules\main\assets\BxAsset',
-        'app\modules\main\assets\StellarAsset'
+        'app\modules\main\assets\StellarAsset',
+        'app\modules\main\assets\BlueimpAsset',
+        'app\assets\MagnificAsset'
 
     ];
 

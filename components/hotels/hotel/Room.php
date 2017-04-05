@@ -50,6 +50,7 @@ class Room extends Component
                 $this->roomRate[] = \Yii::createObject([
                     'class' => Rates::className(),
                     'rateKey' => $rate ->rateKey,
+                    'rateClass' => $rate->rateClass,
                     'rateType' => $rate->rateType,
                     'netPrice' => $rate->net,
                     'allotment' => $rate->allotment,
