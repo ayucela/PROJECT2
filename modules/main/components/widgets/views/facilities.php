@@ -13,17 +13,17 @@
         <?php
             $i =0;?>
 
-                <?php foreach($model as $item):?>
+                <?php foreach($model['facilities'] as $item):?>
 
 
 
 
                         <?php foreach ($facilities as $facility) : ?>
 
-                            <?php if($facility == $item['description']): ?>
-                                <li  data-code ="<?=$item['description']?>" class = "active"><a href="#"><?=$item['description']?><small>(722)</small></a></li>
+                            <?php if($facility == $item['description']['content']): ?>
+                                <li  data-code ="<?= $item['description']['content']?>" class = "active"><a href="#"><?= $item['description']['content']?><small></small></a></li>
                             <?php else: ?>
-                                <li  data-code ="<?=$item['description']?>"><a href="#"><?=$item['description']?><small>(722)</small></a></li>
+                                <li  data-code ="<?= $item['description']['content']?>"><a href="#"><?= $item['description']['content']?><small></small></a></li>
                             <?php endif; ?>
 
                         <?php endforeach;?>

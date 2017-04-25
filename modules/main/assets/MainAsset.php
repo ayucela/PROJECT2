@@ -26,6 +26,7 @@ class MainAsset extends AssetBundle
         'css/responsive.css'
     ];
     public $js = [
+        'js/gmap3.js',
         'js/waypoints.min.js',
         'js/theme-scripts.js',
         'js/scripts.js'

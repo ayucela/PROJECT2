@@ -26,6 +26,7 @@ class SearchView extends \yii\base\Widget
     public $viewType;
     public $sortBy;
     public $sortTo;
+    public $sort;
     public $pageSize;
     private $dataProvider;
 
@@ -37,6 +38,7 @@ class SearchView extends \yii\base\Widget
 
         $this->dataProvider = new ArrayDataProvider([
             'allModels' => $this->preview,
+            'sort' => $this->sort,
             'pagination' => [
                 'pageSize' => $this->pageSize,
             ],

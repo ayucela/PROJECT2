@@ -138,11 +138,11 @@ use yii\widgets\ActiveForm;
                 <div class="sort-by-section clearfix">
                     <h4 class="sort-by-title block-sm">Sort results by:</h4>
                     <ul class="sort-bar clearfix block-sm">
-                        <li class="sort-by-name"><a class="sort-by-container" href="#"><span>name</span></a></li>
-                        <li class="sort-by-price"><a class="sort-by-container" href="#"><span>price</span></a></li>
+                        <li class="sort-by-name"><a class="sort-by-container" href="/hotels/search?sort=name"><span>name</span></a></li>
+                        <li class="sort-by-price"><a class="sort-by-container" href="/hotels/search?sort=price"><span>price</span></a></li>
                         <li class="clearer visible-sms"></li>
-                        <li class="sort-by-rating active"><a class="sort-by-container" href="#"><span>rating</span></a></li>
-                        <li class="sort-by-popularity"><a class="sort-by-container" href="#"><span>popularity</span></a></li>
+                        <li class="sort-by-rating"><a class="sort-by-container" href="/hotels/search?sort=category"><span>rating</span></a></li>
+
                     </ul>
 
                     <ul class="swap-tiles clearfix block-sm">
@@ -162,6 +162,7 @@ use yii\widgets\ActiveForm;
 
                 <?= \app\modules\main\components\widgets\SearchView::widget([
                     'preview' => $model->preview,
+                    'sort' => $sort,
                     'viewType' => $viewType['name'],
                     'pageSize' => $viewType['perPage']
                 ])?>
@@ -169,7 +170,6 @@ use yii\widgets\ActiveForm;
                 <?php \yii\widgets\Pjax::end()?>
 
 
-                <a href="#" class="uppercase full-width button btn-large">load more listing</a>
             </div>
         </div>
     </div>

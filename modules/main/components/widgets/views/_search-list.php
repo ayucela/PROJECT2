@@ -15,7 +15,7 @@
    <div class="col-sm-5 col-md-4 " >
         <div class="gallery">
             <figure>
-                <a href="/main/hotels/slideshow-ajax?hotelCode=<?=$model['code']?>" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="<?=$model['view']?>"></a>
+                <a href="/main/hotels/slideshow-ajax?hotelCode=<?=$model['code']?>" class="hover-effect popup-gallery"><img alt="" src="<?=$model['view']?>"></a>
             </figure>
         </div>
 

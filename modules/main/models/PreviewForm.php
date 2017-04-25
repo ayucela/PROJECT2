@@ -118,7 +118,7 @@ class PreviewForm extends Model
 
         \Yii::$app->cache->set('attr', $this->mainAttributes);
 
-        if($this->preview){
+        if(isset($this->preview) && is_array($this->preview)){
           return true;
         } else
             throw new HttpException(503, 'Preview not set!');
@@ -142,10 +142,20 @@ class PreviewForm extends Model
     private function setPreview()
     {
 
+        if($this->isChanged()) {
 
             $this->preview = HotelsPreviewHelper::findHotels($this->availability());
+            \Yii::$app->cache->set('preview', $this->preview);
+        } else
 
+            if(\Yii::$app->cache->get('preview')){
 
+                $this->preview = \Yii::$app->cache->get('preview');
+
+            } else {
+               $this->preview = HotelsPreviewHelper::findHotels($this->availability());
+                \Yii::$app->cache->set('preview', $this->preview);
+            };
 
     }
 
@@ -154,6 +164,7 @@ class PreviewForm extends Model
       //dd($this);
         $dateFrom = \DateTime::createFromFormat("m/d/Y", $this->date_from);
         $dateTo = \DateTime::createFromFormat("m/d/Y", $this->date_to);
+
         return ApiClient::query(AvailabilityApiQuery::className())
             ->addDestination(new Destination([
                 'code' => $this->destination

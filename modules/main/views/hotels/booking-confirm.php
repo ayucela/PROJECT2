@@ -37,25 +37,15 @@
                     <hr />
                     <h2>Traveler Information</h2>
                     <dl class="term-description">
-                        <dt>Booking number:</dt><dd>5784-BD245</dd>
-                        <dt>First name:</dt><dd>Jessica</dd>
-                        <dt>Last name:</dt><dd>Brown</dd>
-                        <dt>E-mail address:</dt><dd>Info@Jessica.com</dd>
-                        <dt>Street Address and number:</dt><dd>353 Third floor Avenue</dd>
-                        <dt>Town / City:</dt><dd>Paris,France</dd>
-                        <dt>ZIP code:</dt><dd>75800-875</dd>
-                        <dt>Country:</dt><dd>United States of america</dd>
+                        <dt>Booking number:</dt><dd><?= $response->booking->reference?></dd>
+                        <dt>First name:</dt><dd><?= $response->booking->holder->name?></dd>
+                        <dt>Last name:</dt><dd><?= $response->booking->holder->surname?></dd>
+                        <dt>E-mail address:</dt><dd><?= $hotel->email?></dd>
+                        <dt>Street Address and number:</dt><dd><?= $hotel->address->content?></dd>
+                        <dt>Town / City:</dt><dd><?= $hotel->city->content?>,<?= $hotel->country->content?></dd>
+                        <dt>ZIP code:</dt><dd><?= $hotel->postalCode?></dd>
                     </dl>
                     <hr />
-                    <h2>Payment</h2>
-                    <p>Praesent dolor lectus, rutrum sit amet risus vitae, imperdiet cursus neque. Nulla tempor nec lorem eu suscipit. Donec dignissim lectus a nunc molestie consectetur. Nulla eu urna in nisi adipiscing placerat. Nam vel scelerisque magna. Donec justo urna, posuere ut dictum quis.</p>
-                    <br />
-                    <p class="red-color">Payment is made by Credit Card Via Paypal.</p>
-                    <hr />
-                    <h2>View Booking Details</h2>
-                    <p>Praesent dolor lectus, rutrum sit amet risus vitae, imperdiet cursus neque. Nulla tempor nec lorem eu suscipit. Donec dignissim lectus a nunc molestie consectetur. Nulla eu urna in nisi adipiscing placerat. Nam vel scelerisque magna. Donec justo urna, posuere ut dictum quis.</p>
-                    <br />
-                    <a href="#" class="red-color underline view-link">https://www.travelo.com/booking-details/?=f4acb19f-9542-4a5c-b8ee</a>
                 </div>
             </div>
             <div class="sidebar col-sm-4 col-md-3">

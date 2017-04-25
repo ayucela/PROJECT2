@@ -12,9 +12,9 @@
         <?php foreach($model as $item):?>
             <?php foreach ($accs as $acc) : ?>
                 <?php if($acc == $item['code']): ?>
-                    <li  data-code ="<?=$item['code']?>" class = "active"><a href="#"><?=$item['typeMultiDescription']['content']?><small>(722)</small></a></li>
+                    <li  data-code ="<?=$item['code']?>" class = "active"><a href="#"><?=$item['typeMultiDescription']['content']?><small></small></a></li>
                 <?php else: ?>
-                    <li  data-code ="<?=$item['code']?>"><a href="#"><?=$item['typeMultiDescription']['content']?><small>(722)</small></a></li>
+                    <li  data-code ="<?=$item['code']?>"><a href="#"><?=$item['typeMultiDescription']['content']?><small></small></a></li>
                 <?php endif; ?>
             <?php endforeach;?>
         <?php endforeach; ?>

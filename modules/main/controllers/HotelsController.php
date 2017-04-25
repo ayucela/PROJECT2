@@ -35,6 +35,7 @@ use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\ApiVersions;
 use yii\base\Exception;
 use yii\data\ArrayDataProvider;
+use yii\data\Sort;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\Response;
@@ -98,11 +99,20 @@ class HotelsController extends Controller
         }
 
         $session->set('preview-main', $model->getMainAttributes());
+        $sort = new Sort([
+            'attributes' => [
+                'name' => ['default' => SORT_ASC],
+                'price' => ['default' => SORT_ASC],
+                'category' => ['default' => SORT_DESC]
 
+            ],
+        ]);
+        //dd($model);
 
         return $this->render('search', [
            'model' => $model,
            'viewType' => $view,
+           'sort' => $sort
         ]);
     }
 
@@ -114,12 +124,16 @@ class HotelsController extends Controller
             'code' => $code
         ]);
         $hotel->setHotelParams();
+        \Yii::$app->session->set('hotel', $hotel);
 
         return $this->render('view', compact('hotel'));
     }
 
-    public function actionBooking($rateKey, $paymentType)
+    public function actionBooking($rateKey, $paymentType, $date_from, $date_to, $rooms, $adults, $children, $name,
+                                  $hotelCode, $roomCode, $price )
+
     {
+
         if($paymentType == 'AT_WEB') {
             $model = new BookingForm([
                 'scenario'=>'AT_WEB',
@@ -128,12 +142,26 @@ class HotelsController extends Controller
         } elseif ($paymentType == 'IN_HOTEL'){
             $model = new BookingForm();
         }
+        $hotel = ApiClient::query(HotelApiQuery::className())
+            ->setHotel($hotelCode)
+            ->get()
+            ->response();
+
+        $time1 = new  \DateTime($date_from);
+
+        $time2 = new  \DateTime($date_to);
+
+        $diff = $time1->diff($time2);
+        $nights = $diff->days;
+       // dd($hotel);
         if($model->load(\Yii::$app->request->post())){
             $response = $model->send();
+
             \Yii::$app->session->set('booking', $response);
             return $this->redirect('/main/hotels/booking-confirm');
         }
-        return $this->render('booking', compact('model', 'paymentType'));
+        return $this->render('booking', compact('model', 'paymentType', 'date_from', 'date_to',
+            'hotel', 'rooms', 'adults', 'children', 'name', 'roomCode', 'nights', 'price'));
     }
 
     public function actionBookingConfirm()
@@ -141,9 +169,13 @@ class HotelsController extends Controller
         $response = \Yii::$app->session->get('booking');
         if ($response->booking->status == "CONFIRMED") {
             // unset(\Yii::$app->session['booking']);
-            return $this->render('booking-confirm', compact('response'));
+            $hotel = ApiClient::query(HotelApiQuery::className())
+                ->setHotel($response->booking->hotel->code)
+                ->get()
+                ->response();
+            return $this->render('booking-confirm', compact('response', 'hotel'));
         } else {
-            return $this->render('booking-fail', compact('response'));
+            return $this->render('booking-fail', compact('response', 'hotel'));
         }
     }
 
@@ -169,13 +201,10 @@ class HotelsController extends Controller
     public function actionApiTest()
     {
 
-       $client = ApiClient::query(HotelsApiQuery::className())
-                     ->addParams([
-                         'from' => '1',
-                         'to' => '1000'
-                     ])
-                     ->get()
-                     ->asArray();
+       $client = ApiClient::query(HotelApiQuery::className())
+           ->setHotel(113220)
+           ->get()
+           ->response();
 
         dd($client);
     }

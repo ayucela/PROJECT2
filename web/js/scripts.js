@@ -57,7 +57,7 @@ tjq(document).ready(function() {
         tjq('#preview-form').submit();
     });
 
-    tjq('#amenities-filter').on('click', 'li', function(){
+   tjq('#amenities-filter').on('click', 'li', function(){
         amenities =[];
 
         active =  tjq('#amenities-filter').find('.active');

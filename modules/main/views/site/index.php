@@ -98,6 +98,7 @@ use yii\helpers\Html;
                                     <div class="selector">
                                         <select id="mainsearchform-children" name="MainSearchForm[children]" class="full-width">
                                             <option selected value="0">No kids</option>
+
                                         </select>
                                     </div>
                                 </div>

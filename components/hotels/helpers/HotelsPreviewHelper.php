@@ -13,6 +13,7 @@ use app\components\hotels\ApiClient;
 use app\components\hotels\queries\HotelApiQuery;
 use app\components\hotels\queries\HotelsApiQuery;
 use yii\base\Component;
+use Zend\Json\Server\Exception\HttpException;
 
 class HotelsPreviewHelper extends Component
 {
@@ -53,7 +54,7 @@ class HotelsPreviewHelper extends Component
             $model->limit = $model->to - $model->from;
         }
         $model->availability = $availability;
-
+       // dd($model);
         if($model->preview) {
             return $model->preview;
         } return false;
@@ -105,6 +106,7 @@ class HotelsPreviewHelper extends Component
                 ->get()
                 ->response();
         }
+
         return $hotels;
     }
 
@@ -143,16 +145,18 @@ class HotelsPreviewHelper extends Component
 
     protected function generalView($images)
     {
-        foreach ($images as $image)
-        {
-            if($image->imageTypeCode == 'GEN')
-            $genImages[] = $image;
-        }
+        if($images && is_array($images)) {
 
-        if(isset($genImages)) {
-            return $genImages[0]->path;
-        } else
-            return false;
+            foreach ($images as $image) {
+                if ($image->imageTypeCode == 'GEN')
+                    $genImages[] = $image;
+            }
+
+            if (isset($genImages)) {
+                return $genImages[0]->path;
+            } else
+                return false;
+        } throw new \yii\web\HttpException(503, 'No images found');
     }
 
     private function getFacilities($hotelFacilities)

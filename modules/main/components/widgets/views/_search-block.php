@@ -7,15 +7,15 @@
  */
 ?>
 <div class="col-sms-6 col-sm-6 col-md-4">
-    <article class="box">
+    <article class="box small-box">
         <figure>
-            <a href="ajax/slideshow-popup.html" title="" class="hover-effect popup-gallery"><img src="<?= $model['view']?>" alt="" width="270" height="160" /></a>
+            <a href="/main/hotels/slideshow-ajax?hotelCode=<?=$model['code']?>" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="<?=$model['view']?>"></a>
         </figure>
         <div class="details">
             <?=\yii\helpers\Html::a('SELECT', ['/hotels/view', 'code'=>$model['code']],['class'=>'button btn-small full-width text-center'])?>
-            <h4 class="box-title"><?= \yii\helpers\StringHelper::truncateWords($model['name'], 20)?></h4>
+            <h4 class="box-title text-center"><?= \yii\helpers\StringHelper::truncateWords($model['name'], 20)?></h4>
             <label class="price-wrapper">
-                <span class="price-per-unit"><?=$model['price']?></span>avg/night
+                <span class="price-per-unit text-center"><?=$model['price']?></span>avg/night
             </label>
         </div>
     </article>

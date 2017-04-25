@@ -23,15 +23,11 @@ class Facilities extends Widget
     public function init()
     {
         parent::init();
-        if(\Yii::$app->cache->get('facilities')){
-            $this->model = \Yii::$app->cache->get('facilities');
-        } else {
+
             $this->model = ApiClient::query(FacilitiesQuery::className())
                 ->get()
                 ->asArray();
-             \Yii::$app->cache->set('facilities', $this->model);
 
-        }
 
         $this->facility = explode(',', $this->facility);
 

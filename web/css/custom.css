@@ -6,6 +6,7 @@
     height: 500px;
 }
 
+
 .image-box .box .box-title-container, .image-box.box .box-title-container {
     height: 50px;
 }
@@ -15,6 +16,22 @@
     height: 170px;
     object-fit: cover;
     object-position: top center;
+}
+
+.image-box .small-box{
+    height: 270px;
+}
+.image-box .small-box .box-title-container {
+    height: 50px;
+}
+
+.image-box .small-box .details a {
+    margin-top:0;
+}
+
+.image-box .small-box .details h4 {
+    margin-top:6px;
+    margin-bottom:6px;
 }
 
 .five-stars-container .star-1:before{
@@ -63,6 +80,20 @@
     color: #27A9D8;
     margin-bottom:10px;
     cursor: pointer;
+}
+
+.list-view .box .gallery .popup-gallery img{
+    width: 270px;
+    height: 160px;
+    margin: 15px;
+    object-fit: cover;
+    object-position: top center;
+}
+.photo-gallery .slides li img {
+    max-width: 900px;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: top center;
 }
 
 

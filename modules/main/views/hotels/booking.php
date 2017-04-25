@@ -163,44 +163,43 @@ use yii\widgets\ActiveForm;
                     <h4>Booking Details</h4>
                     <article class="image-box hotel listing-style1">
                         <figure class="clearfix">
-                            <a href="hotel-detailed.html" class="hover-effect middle-block"><img class="middle-item" width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
-                            <div class="travel-title">
-                                <h5 class="box-title">Hotel Hilton<small>Paris france</small></h5>
-                                <a href="hotel-detailed.html" class="button">EDIT</a>
-                            </div>
+                             <div class="travel-title">
+                                <h5 class="box-title"><?= $hotel->name->content ?><small><?= $hotel->destination->name->content ?>&nbsp;<?= $hotel->country->description->content ?></small></h5>
+                                <?= \yii\helpers\Html::a('EDIT', ['/hotels/view', 'code'=> $hotel->code], ['class'=>'button']) ?>
+                             </div>
                         </figure>
-                        <div class="details">
+                        <div class="details">main
                             <div class="feedback">
-                                <div data-placement="bottom" data-toggle="tooltip" class="five-stars-container" title="4 stars"><span style="width: 80%;" class="five-stars"></span></div>
-                                <span class="review">270 reviews</span>
+                                <div data-placement="bottom" data-toggle="tooltip" class="five-stars-container no-back-star" title="<?= $hotel->category->code[0] ?> stars"><span style="width: 80%;" class="star-<?= $hotel->category->code[0] ?>"></span></div>
+                                <!--<span class="review">270 reviews</span>-->
                             </div>
                             <div class="constant-column-3 timing clearfix">
                                 <div class="check-in">
                                     <label>Check in</label>
-                                    <span>NOV 30, 2013<br />11 AM</span>
+                                    <span><?= Yii::$app->formatter->asDate($date_from, 'php: M d, Y')?></span>
                                 </div>
                                 <div class="duration text-center">
                                     <i class="soap-icon-clock"></i>
-                                    <span>2 Nights</span>
+                                    <span><?= $nights?> Nights</span>
                                 </div>
                                 <div class="check-out">
                                     <label>Check out</label>
-                                    <span>DEC 02, 2013<br />2 PM</span>
+                                    <span><?= Yii::$app->formatter->asDate($date_to, 'php: M d, Y')?></span>
                                 </div>
                             </div>
                             <div class="guest">
-                                <small class="uppercase">1 Standard family room for <span class="skin-color">3 Persons</span></small>
+                                <small class="uppercase"><?= $rooms?> Standard family room for <span class="skin-color"><?= $adults + $children ?> Persons</span></small>
                             </div>
                         </div>
                     </article>
 
                     <h4>Other Details</h4>
                     <dl class="other-details">
-                        <dt class="feature">room Type:</dt><dd class="value">Standard Family</dd>
-                        <dt class="feature">per Room price:</dt><dd class="value">$121</dd>
-                        <dt class="feature">2 night Stay:</dt><dd class="value">$242</dd>
-                        <dt class="feature">taxes and fees:</dt><dd class="value">$10</dd>
-                        <dt class="total-price">Total Price</dt><dd class="total-price-value">$252</dd>
+                        <dt class="feature">room Type:</dt><dd class="value"><?= $name?></dd>
+                        <dt class="feature">per Room price:</dt><dd class="value"><?= $price?></dd>
+                        <dt class="feature"><?= $nights?> night Stay:</dt><dd class="value"><?= $price * $nights?></dd>
+                        <!--<dt class="feature">taxes and fees:</dt><dd class="value">$10</dd>-->
+                        <dt class="total-price">Total Price</dt><dd class="total-price-value"><?=$price*$rooms*$nights?></dd>
                     </dl>
                 </div>
 

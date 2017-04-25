@@ -134,7 +134,10 @@ use yii\widgets\ActiveForm;
                                 <span class="rate-class"><?= $rate->rateClass?></span>
                                 <span class="board"><?= $rate->boardName?></span>
                                 <span class="price"><small>PER/NIGHT</small><?= $rate->netPrice?></span>
-                                <?=\yii\helpers\Html::a('BOOK NOW', ['/main/hotels/booking', 'rateKey'=>$rate->rateKey, 'paymentType' => $rate->paymentType], ['class'=> 'button btn-small full-width text-center']) ?>
+                                <?=\yii\helpers\Html::a('BOOK NOW', ['/main/hotels/booking', 'rateKey'=>$rate->rateKey, 'paymentType' => $rate->paymentType,
+                                'date_from'=>$room->date_from, 'date_to'=>$room->date_to, 'rooms' => $room->rooms,
+                                'name' => $room->name, 'adults'=> $room->adults, 'children'=>$room->children, 'hotelCode'=>$room->hotelCode,
+                                'roomCode'=>$room->roomCode, 'price' => $rate->netPrice], ['class'=> 'button btn-small full-width text-center']) ?>
                         </div>
                     <?php endforeach; ?>
 
