@@ -78,20 +78,20 @@ use yii\widgets\ActiveForm;
                                         <label>destination</label>
                                         <input type="text" name="PreviewForm[destination]"  id="previewform-destination" class="input-text full-width" value="<?=$model->destination?>" placeholder="enter a destination or hotel name"
                                                aria-required="true" aria-invalid="true"/>
-                                        <div class="help-block"><?= $searchForm->errors['destination'] ? $searchForm->errors['destination'][0] : ''?></div>
+<!--                                        <div class="help-block">--><?//= $model->errors['destination'] ? $model->errors['destination'][0] : ''?><!--</div>-->
                                     </div>
                                     <div class="form-group">
                                         <label>check in</label>
                                         <div class="datepicker-wrap">
                                             <input type="text" name="PreviewForm[date_from]"  id="previewform-date_from" value="<?=$model->date_from?>" class="input-text full-width" placeholder="mm/dd/yy" />
-                                            <div class="help-block"><?= $searchForm->errors['date_from'] ? $searchForm->errors['date_from'][0] : ''?></div>
+<!--                                            <div class="help-block">--><?//= $model->errors['date_from'] ? $model->errors['date_from'][0] : ''?><!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>check out</label>
                                         <div class="datepicker-wrap">
                                             <input type="text" name="PreviewForm[date_to]"  id="previewform-date_to" value="<?=$model->date_to?>" class="input-text full-width" placeholder="mm/dd/yy" />
-                                            <div class="help-block"><?= $searchForm->errors['date_to'] ? $searchForm->errors['date_to'][0] : ''?></div>
+<!--                                            <div class="help-block">--><?//= $model->errors['date_to'] ? $model->errors['date_to'][0] : ''?><!--</div>-->
                                         </div>
                                     </div>
                                     <div class="form-group">

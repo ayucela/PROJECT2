@@ -198,7 +198,8 @@ class PreviewForm extends Model
         } return false;
     }
 
-    private function setFilterPrice(){
+    private function setFilterPrice()
+    {
         if($this->price_from && $this->price_to){
             $this->filterPrice = [
                 'price' => [
@@ -211,7 +212,8 @@ class PreviewForm extends Model
             return false;
     }
 
-    private function setFilterAccommodations(){
+    private function setFilterAccommodations()
+    {
 
         if($this->accommodation){
             $accommodation = explode(',',$this->accommodation);
@@ -224,7 +226,8 @@ class PreviewForm extends Model
             return false;
     }
 
-    private function setFilterAmenities(){
+    private function setFilterAmenities()
+    {
 
         if($this->amenities){
             $amenities = explode(',',$this->amenities);
@@ -262,10 +265,11 @@ class PreviewForm extends Model
 
     }
 
-    private function isChanged(){
+    private function isChanged()
+    {
         $oldAttributes = \Yii::$app->cache->get('attr');
 
-        if(isset($oldAttributes)) {
+        if(isset($oldAttributes) && is_array($oldAttributes)) {
             $result = array_diff($this->mainAttributes, $oldAttributes);
 
             if (empty($result)) {

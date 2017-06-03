@@ -59,6 +59,7 @@ class HotelsController extends Controller
     {
         return $this->render('index');
     }
+
     public function actionSearch($view=null, array $sort=null, array $filter = null)
     {
         $session=\Yii::$app->session;
@@ -71,13 +72,13 @@ class HotelsController extends Controller
 
         $view = $this->getSearchView($view);
 
-        if(\Yii::$app->request->post()) {
-                $params = \Yii::$app->request->post();
-        }
+//        if(\Yii::$app->request->post() !== null) {
+//                $params = \Yii::$app->request->post();
+//        }
 
-        if($params) {
+        if(isset($params)) {
 
-            if($params && is_array($params)) {
+            if(is_array($params)) {
                 $model = new PreviewForm();
                 if ($model->load($params)) {
 
