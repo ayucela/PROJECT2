@@ -9,8 +9,11 @@
 <div class="amenities">
     <?php for($i = 0; $i < 5; $i++) : ?>
 
-    <i class="<?=$icons[$i]['class']?>"  data-toggle="tooltip" data-placement="bottom"
-        data-original-title="<?=$icons[$i]['description']?>"></i>
+        <?php if (isset($icons[$i])) { ?>
+            <i class="<?=$icons[$i]['class']?>"  data-toggle="tooltip" data-placement="bottom"
+                data-original-title="<?=$icons[$i]['description']?>"></i>
+        <?php } ?>
+
     <?php endfor; ?>
 
 </div>
