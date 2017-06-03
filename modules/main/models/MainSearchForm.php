@@ -9,6 +9,7 @@
 namespace app\modules\main\models;
 
 
+use yii\base\ErrorException;
 use yii\base\Model;
 
 /**
@@ -80,9 +81,13 @@ class MainSearchForm extends Model
      */
     public function send()
     {
-        $destination = explode(';', $this->destination);
+        try {
+            $destination = explode(';', $this->destination);
 
-        $destination = explode('_', trim($destination[1]));
+            $destination = explode('_', trim($destination[1]));
+        } catch (ErrorException $exception) {
+            $destination = ['', $this->destination];
+        }
 
         if ($this->validate()) {
 
