@@ -99,7 +99,18 @@ tjq(document).ready(function() {
             );
         tjq('#search-result').addClass('hidden').html('');
 
-    })
+    });
 
+
+    tjq(document).on('click', '#main-search-form > div > div.form-group.col-sm-6.col-md-2.fixheight > button', function () {
+
+        var text = tjq('#mainsearchform-destination').val();
+
+        if  (!text.includes(';') || !text.includes('_'))  {
+            var destination = tjq('#search-result').children()[0].innerText;
+            // tjq('#search-result').addClass('hidden');
+            tjq('#mainsearchform-destination').val(destination);
+        }
+    });
 
 });
