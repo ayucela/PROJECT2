@@ -113,4 +113,9 @@ tjq(document).ready(function() {
         }
     });
 
+    tjq("#mainsearchform-date_to").datepicker('disable');
+
+    tjq(document).on('change', 'input#mainsearchform-date_from', function() {
+        tjq("#mainsearchform-date_to").datepicker('enable');
+    });
 });
