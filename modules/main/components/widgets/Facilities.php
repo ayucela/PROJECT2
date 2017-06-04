@@ -24,10 +24,17 @@ class Facilities extends Widget
     {
         parent::init();
 
+        $filters = \Yii::$app->cache->get('facilities-filters');
+
+        if ($filters !== false && $filters !== null) {
+            $this->model = $filters;
+        } else {
             $this->model = ApiClient::query(FacilitiesQuery::className())
                 ->get()
                 ->asArray();
 
+            \Yii::$app->cache->set('facilities-filters', $this->model, 1000);
+        }
 
         $this->facility = explode(',', $this->facility);
 
