@@ -117,7 +117,8 @@ tjq(document).ready(function() {
         tjq("#mainsearchform-date_to").datepicker('disable');
     }
 
-    tjq(document).on('change', 'input#mainsearchform-date_from', function() {
+    tjq(document).on('change', 'input#mainsearchform-date_from', function(event) {
         tjq("#mainsearchform-date_to").datepicker('enable');
+        tjq("#mainsearchform-date_to").datepicker( "option", "minDate", new Date(event.target.value));
     });
 });
