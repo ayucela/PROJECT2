@@ -25,14 +25,24 @@ class Accommodations extends Widget
     {
         parent::init();
         $this->cache = \Yii::$app->cache;
-        $this->model = ApiClient::query(AccomodationsQuery::className())
-            ->addParams([
-                'language'=>'ENG',
-                'from' => '1',
-                'to' => '10'
-            ])
-            ->get()
-            ->asArray();
+
+        $filters = $this->cache->get('accommodations-filters');
+
+        if ($filters !== false && $filters !== null) {
+            $this->model = $filters;
+        } else {
+            $this->model = ApiClient::query(AccomodationsQuery::className())
+                ->addParams([
+                    'language'=>'ENG',
+                    'from' => '1',
+                    'to' => '10'
+                ])
+                ->get()
+                ->asArray();
+
+            $this->cache->set('accommodations-filters', $this->model, 1000);
+        }
+
         $this->accs = explode(',', $this->accs);
     }
 
