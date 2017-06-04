@@ -64,7 +64,8 @@ class HotelsController extends Controller
     {
         $session=\Yii::$app->session;
         $cache = \Yii::$app->cache;
-        if($session['main_form']){
+
+        if($session['main_form']) {
             $params = $session['main_form'];
             unset($session['main_form']);
         }
@@ -72,9 +73,9 @@ class HotelsController extends Controller
 
         $view = $this->getSearchView($view);
 
-//        if(\Yii::$app->request->post() !== null) {
-//                $params = \Yii::$app->request->post();
-//        }
+        if(count(\Yii::$app->request->post()) !== 0) {
+            $params = \Yii::$app->request->post();
+        }
 
         if(isset($params)) {
 
