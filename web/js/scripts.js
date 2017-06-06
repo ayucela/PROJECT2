@@ -102,11 +102,38 @@ tjq(document).ready(function() {
     });
 
 
-    tjq(document).on('click', '#main-search-form > div > div.form-group.col-sm-6.col-md-2.fixheight > button', function () {
+    tjq(document).on('click', '#main-search-form > div > div.form-group.col-sm-6.col-md-2.fixheight > button', function (event) {
+
+        clearAlerts();
 
         var text = tjq('#mainsearchform-destination').val();
 
+        if (tjq("#mainsearchform-date_from").val() === '') {
+            (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
+
+            tjq('input#mainsearchform-date_from').parent().siblings('div.help-block').text('You should select check in date!');
+
+            return false;
+        }
+
+        if (tjq("#mainsearchform-date_to").val() === '') {
+            (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
+
+            tjq('input#mainsearchform-date_to').parent().siblings('div.help-block').text('You should select check out date!');
+
+            return false;
+        }
+
         if  (!text.includes(';') || !text.includes('_'))  {
+
+            if (tjq('#search-result').children().length < 1) {
+                (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
+
+                tjq('input#mainsearchform-destination ~ div.help-block').text('Destination is not correct!');
+
+                return false;
+            }
+
             var destination = tjq('#search-result').children()[0].innerText;
             // tjq('#search-result').addClass('hidden');
             tjq('#mainsearchform-destination').val(destination);
@@ -124,6 +151,12 @@ tjq(document).ready(function() {
     });
 
 
+    function clearAlerts() {
+        tjq('input#mainsearchform-destination ~ div.help-block').text('');
 
+        tjq('input#mainsearchform-date_from').parent().siblings('div.help-block').text('');
+
+        tjq('input#mainsearchform-date_to').parent().siblings('div.help-block').text('');
+    }
 
 });

@@ -45,6 +45,7 @@ use yii\helpers\Html;
                             <input autocomplete="off" type="text" name="MainSearchForm[destination]"  id="mainsearchform-destination" class="input-text full-width" value placeholder="enter a destination or hotel name"
                             aria-required="true" aria-invalid="true"/>
 <!--                            <div class="help-block">--><?//= $searchForm->errors['destination'] ? $searchForm->errors['destination'][0] : ''?><!--</div>-->
+                            <div class="help-block"></div>
                             <div id = "search-result" class ="hidden"></div>
                         </div>
 
@@ -57,6 +58,7 @@ use yii\helpers\Html;
                                        <input type="text" name="MainSearchForm[date_from]"  id="mainsearchform-date_from" class="input-text full-width" placeholder="mm/dd/yy" />
                                     </div>
 <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_from'] ? $searchForm->errors['date_from'][0] : ''?><!--</div>-->
+                                    <div class="help-block"></div>
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Check Out</label>
@@ -64,6 +66,7 @@ use yii\helpers\Html;
                                        <input type="text" name="MainSearchForm[date_to]" id="mainsearchform-date_to" class="input-text full-width" placeholder="mm/dd/yy" />
                                     </div>
 <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_to'] ? $searchForm->errors['date_to'][0] : ''?><!--</div>-->
+                                    <div class="help-block"></div>
                                 </div>
                             </div>
                         </div>
