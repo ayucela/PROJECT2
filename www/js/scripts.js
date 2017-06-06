@@ -108,7 +108,7 @@ tjq(document).ready(function() {
 
         var text = tjq('#mainsearchform-destination').val();
 
-        var textIncludes = (!text.includes(';') || !text.includes('_'));
+        var textIncludes = (text.includes(';') || text.includes('_'));
 
         if (!textIncludes && tjq('#search-result').children().length < 1) {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
@@ -134,7 +134,7 @@ tjq(document).ready(function() {
             return false;
         }
 
-        if  (textIncludes)  {
+        if  (!textIncludes)  {
             var destination = tjq('#search-result').children()[0].innerText;
             // tjq('#search-result').addClass('hidden');
             tjq('#mainsearchform-destination').val(destination);
