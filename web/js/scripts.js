@@ -50,14 +50,14 @@ tjq(document).ready(function() {
 
         active =  tjq('#accomodations-filter').find('.active');
         active.each(function(item){
-          accs.push(tjq(this).data('code'));
+            accs.push(tjq(this).data('code'));
         });
 
-       tjq('#previewform-accommodation').val(accs);
+        tjq('#previewform-accommodation').val(accs);
         tjq('#preview-form').submit();
     });
 
-   tjq('#amenities-filter').on('click', 'li', function(){
+    tjq('#amenities-filter').on('click', 'li', function(){
         amenities =[];
 
         active =  tjq('#amenities-filter').find('.active');
@@ -86,14 +86,14 @@ tjq(document).ready(function() {
                         console.log(item);
                         responseStr = "<p>"+item.country.name_en+";&nbsp;"+
                             item.destination.name_en+"_"+item.destination.code+"</p>";
-                            tjq('#search-result').removeClass('hidden');
-                            tjq('#search-result').append(responseStr);
-                            tjq('#search-result').children().on('click', function(e){
-                                destination = tjq(this).text();
-                                tjq('#mainsearchform-destination').val(destination);
-                                tjq('#search-result').addClass('hidden').html('');
+                        tjq('#search-result').removeClass('hidden');
+                        tjq('#search-result').append(responseStr);
+                        tjq('#search-result').children().on('click', function(e){
+                            destination = tjq(this).text();
+                            tjq('#mainsearchform-destination').val(destination);
+                            tjq('#search-result').addClass('hidden').html('');
 
-                            });
+                        });
                     });
                 }
             );
@@ -107,6 +107,16 @@ tjq(document).ready(function() {
         clearAlerts();
 
         var text = tjq('#mainsearchform-destination').val();
+
+        var textIncludes = (text.includes(';') || text.includes('_'));
+
+        if (!textIncludes && tjq('#search-result').children().length < 1) {
+            (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
+
+            tjq('input#mainsearchform-destination ~ div.help-block').text('Destination is not correct!');
+
+            return false;
+        }
 
         if (tjq("#mainsearchform-date_from").val() === '') {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
@@ -124,16 +134,7 @@ tjq(document).ready(function() {
             return false;
         }
 
-        if  (!text.includes(';') || !text.includes('_'))  {
-
-            if (tjq('#search-result').children().length < 1) {
-                (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
-
-                tjq('input#mainsearchform-destination ~ div.help-block').text('Destination is not correct!');
-
-                return false;
-            }
-
+        if  (!textIncludes)  {
             var destination = tjq('#search-result').children()[0].innerText;
             // tjq('#search-result').addClass('hidden');
             tjq('#mainsearchform-destination').val(destination);
