@@ -42,7 +42,7 @@ use yii\helpers\Html;
                         <div class="form-group col-sm-6 col-md-3">
                             <h4 class="title">Where</h4>
                             <label>Your Destination</label>
-                            <input autocomplete="off" type="text" name="MainSearchForm[destination]"  id="mainsearchform-destination" class="input-text full-width" value placeholder="enter a destination or hotel name"
+                            <input autocomplete="off" type="text" name="MainSearchForm[destination]"  id="mainsearchform-destination" class="input-text full-width form-control" value placeholder="enter a destination or hotel name"
                             aria-required="true" aria-invalid="true"/>
 <!--                            <div class="help-block">--><?//= $searchForm->errors['destination'] ? $searchForm->errors['destination'][0] : ''?><!--</div>-->
                             <div class="help-block"></div>
@@ -55,7 +55,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-6">
                                     <label>Check In</label>
                                     <div class="datepicker-wrap">
-                                       <input type="text" name="MainSearchForm[date_from]"  id="mainsearchform-date_from" class="input-text full-width" placeholder="mm/dd/yy" />
+                                       <input type="text" name="MainSearchForm[date_from]"  id="mainsearchform-date_from" class="input-text full-width form-control" placeholder="mm/dd/yy" />
                                     </div>
 <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_from'] ? $searchForm->errors['date_from'][0] : ''?><!--</div>-->
                                     <div class="help-block"></div>
@@ -63,7 +63,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-6">
                                     <label>Check Out</label>
                                     <div class="datepicker-wrap">
-                                       <input type="text" name="MainSearchForm[date_to]" id="mainsearchform-date_to" class="input-text full-width" placeholder="mm/dd/yy" />
+                                       <input type="text" name="MainSearchForm[date_to]" id="mainsearchform-date_to" class="input-text full-width form-control" placeholder="mm/dd/yy" />
                                     </div>
 <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_to'] ? $searchForm->errors['date_to'][0] : ''?><!--</div>-->
                                     <div class="help-block"></div>
@@ -77,7 +77,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-4">
                                     <label>Rooms</label>
                                     <div class="selector">
-                                        <select id="mainsearchform-rooms" name="MainSearchForm[rooms]" class="full-width">
+                                        <select id="mainsearchform-rooms" name="MainSearchForm[rooms]" class="full-width form-control">
                                             <option selected value="1">01</option>
                                             <option value="2">02</option>
                                             <option value="3">03</option>
@@ -88,7 +88,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-4">
                                     <label>Adults</label>
                                     <div class="selector">
-                                        <select id="mainsearchform-adults" name="MainSearchForm[adults]" class="full-width">
+                                        <select id="mainsearchform-adults" name="MainSearchForm[adults]" class="full-width form-control">
                                             <option selected value="1">01</option>
                                             <option value="2">02</option>
                                             <option value="3">03</option>
@@ -99,7 +99,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-4">
                                     <label>Kids</label>
                                     <div class="selector">
-                                        <select id="mainsearchform-children" name="MainSearchForm[children]" class="full-width">
+                                        <select id="mainsearchform-children" name="MainSearchForm[children]" class="full-width form-control">
                                             <option selected value="0">No kids</option>
 
                                         </select>

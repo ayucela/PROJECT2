@@ -114,6 +114,7 @@ tjq(document).ready(function() {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
 
             tjq('input#mainsearchform-destination ~ div.help-block').text('Destination is not correct!');
+            tjq('input#mainsearchform-destination').parent().addClass('has-error');
 
             return false;
         }
@@ -122,6 +123,7 @@ tjq(document).ready(function() {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
 
             tjq('input#mainsearchform-date_from').parent().siblings('div.help-block').text('You should select check in date!');
+            tjq('input#mainsearchform-date_from').parent().parent().addClass('has-error');
 
             return false;
         }
@@ -130,6 +132,7 @@ tjq(document).ready(function() {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
 
             tjq('input#mainsearchform-date_to').parent().siblings('div.help-block').text('You should select check out date!');
+            tjq('input#mainsearchform-date_to').parent().parent().addClass('has-error');
 
             return false;
         }
@@ -162,6 +165,10 @@ tjq(document).ready(function() {
         tjq('input#mainsearchform-date_from').parent().siblings('div.help-block').text('');
 
         tjq('input#mainsearchform-date_to').parent().siblings('div.help-block').text('');
+
+        tjq('input#mainsearchform-destination').parent().removeClass('has-error');
+        tjq('input#mainsearchform-date_from').parent().parent().removeClass('has-error');
+        tjq('input#mainsearchform-date_to').parent().parent().removeClass('has-error');
     }
 
 });
