@@ -148,7 +148,11 @@ tjq(document).ready(function() {
     tjq(document).on('change', 'input#mainsearchform-date_from', function(event) {
 
         tjq("#mainsearchform-date_to").datepicker('enable');
-        tjq("#mainsearchform-date_to").datepicker( "option", "minDate", new Date(event.target.value));
+
+        var date = new Date(event.target.value);
+        date.setDate(date.getDate() + 1);
+
+        tjq("#mainsearchform-date_to").datepicker( "option", "minDate", date);
     });
 
 
