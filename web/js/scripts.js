@@ -119,7 +119,7 @@ tjq(document).ready(function() {
             return false;
         }
 
-        if (tjq("#mainsearchform-date_from").val() === '') {
+        if (!checkDateInput(tjq("#mainsearchform-date_from"))) {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
 
             tjq('input#mainsearchform-date_from').parent().siblings('div.help-block').text('You should select check in date!');
@@ -128,7 +128,7 @@ tjq(document).ready(function() {
             return false;
         }
 
-        if (tjq("#mainsearchform-date_to").val() === '') {
+        if (!checkDateInput(tjq("#mainsearchform-date_to"))) {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
 
             tjq('input#mainsearchform-date_to').parent().siblings('div.help-block').text('You should select check out date!');
@@ -169,6 +169,12 @@ tjq(document).ready(function() {
         tjq('input#mainsearchform-destination').parent().removeClass('has-error');
         tjq('input#mainsearchform-date_from').parent().parent().removeClass('has-error');
         tjq('input#mainsearchform-date_to').parent().parent().removeClass('has-error');
+    }
+
+    function checkDateInput(input) {
+        var value = input.val();
+
+        return value !== '' && value.includes('/') && value.length === 10;
     }
 
 });
