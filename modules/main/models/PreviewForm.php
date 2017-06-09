@@ -17,6 +17,7 @@ use app\components\hotels\queries\availability\Review;
 use app\components\hotels\queries\availability\Stay;
 use app\components\hotels\queries\AvailabilityApiQuery;
 use app\modules\main\components\filter\FilterFactory;
+use DateInterval;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Url;
@@ -169,35 +170,25 @@ class PreviewForm extends Model
         $dateTo = \DateTime::createFromFormat("m/d/Y", $this->date_to);
 
         if (is_bool($dateFrom) || is_bool($dateTo)) {
-            return ApiClient::query(AvailabilityApiQuery::className())
-                ->addDestination(new Destination([
-                    'code' => $this->destination
-                ]))
-                ->addOccupancies(new Occupancies([
-                    'rooms' => $this->rooms,
-                    'adults' => $this->adults,
-                    'children' => $this->children
-                ]))
-                ->post()
-                ->response();
+            $dateFrom = (new \DateTime());
+            $dateTo = (new \DateTime())->add(new DateInterval('P1D'));
         }
-        else {
-            return ApiClient::query(AvailabilityApiQuery::className())
-                ->addDestination(new Destination([
-                    'code' => $this->destination
-                ]))
-                ->addStay(new Stay([
-                    'checkIn' => $dateFrom->format('Y-m-d'),
-                    'checkOut' => $dateTo->format('Y-m-d'),
-                ]))
-                ->addOccupancies(new Occupancies([
-                    'rooms' => $this->rooms,
-                    'adults' => $this->adults,
-                    'children' => $this->children
-                ]))
-                ->post()
-                ->response();
-        }
+
+        return ApiClient::query(AvailabilityApiQuery::className())
+            ->addDestination(new Destination([
+                'code' => $this->destination
+            ]))
+            ->addStay(new Stay([
+                'checkIn' => $dateFrom->format('Y-m-d'),
+                'checkOut' => $dateTo->format('Y-m-d'),
+            ]))
+            ->addOccupancies(new Occupancies([
+                'rooms' => $this->rooms,
+                'adults' => $this->adults,
+                'children' => $this->children
+            ]))
+            ->post()
+            ->response();
     }
 
     private function setMinMax()
