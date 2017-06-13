@@ -36,10 +36,10 @@ class FilterFactory extends Object
                 $filter->params = $params;
                 return $filter->result;
             } else {
-                throw new HttpException (503, 'Wrong filter params!');
+                throw new HttpException (422, 'Wrong filter params!');
             }
         } else
-            throw new HttpException(503, 'Filter Params Not Set!');
+            throw new HttpException(422, 'Filter Params Not Set!');
 
     }
 

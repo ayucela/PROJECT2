@@ -156,7 +156,7 @@ class HotelsPreviewHelper extends Component
                 return $genImages[0]->path;
             } else
                 return false;
-        } throw new \yii\web\HttpException(503, 'No images found');
+        } throw new \yii\web\HttpException(404, 'No images found');
     }
 
     private function getFacilities($hotelFacilities)
