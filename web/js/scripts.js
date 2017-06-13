@@ -152,10 +152,14 @@ tjq(document).ready(function() {
 
         tjq("#mainsearchform-date_to").datepicker('enable');
 
-        var date = new Date(event.target.value);
-        date.setDate(date.getDate() + 1);
+        var minDate = new Date(event.target.value);
+        minDate.setDate(minDate.getDate() + 1);
 
-        tjq("#mainsearchform-date_to").datepicker( "option", "minDate", date);
+        var maxDate = new Date(event.target.value);
+        maxDate.setDate(maxDate.getDate() + 30);
+
+        tjq("#mainsearchform-date_to").datepicker( "option", "minDate", minDate);
+        tjq("#mainsearchform-date_to").datepicker( "option", "maxDate", maxDate);
     });
 
 

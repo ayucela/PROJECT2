@@ -174,6 +174,10 @@ class PreviewForm extends Model
             $dateTo = (new \DateTime())->add(new DateInterval('P1D'));
         }
 
+        if ($dateFrom->diff($dateTo)->days > 30) {
+            $dateTo = ($dateFrom->add(new DateInterval('P30D')));
+        }
+
         return ApiClient::query(AvailabilityApiQuery::className())
             ->addDestination(new Destination([
                 'code' => $this->destination
