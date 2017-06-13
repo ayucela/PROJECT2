@@ -173,6 +173,8 @@ tjq(document).ready(function() {
 
         tjq("#mainsearchform-date_to").datepicker( "option", "minDate", minDate);
         tjq("#mainsearchform-date_to").datepicker( "option", "maxDate", maxDate);
+
+        tjq("#mainsearchform-date_to").prop('disabled', true);
     });
 
 

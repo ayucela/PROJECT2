@@ -55,7 +55,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-6">
                                     <label>Check In</label>
                                     <div class="datepicker-wrap">
-                                       <input type="text" name="MainSearchForm[date_from]"  id="mainsearchform-date_from" class="input-text full-width form-control" placeholder="mm/dd/yy" />
+                                       <input type="text" name="MainSearchForm[date_from]"  id="mainsearchform-date_from" class="input-text full-width form-control" placeholder="mm/dd/yy" disabled/>
                                     </div>
 <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_from'] ? $searchForm->errors['date_from'][0] : ''?><!--</div>-->
                                     <div class="help-block"></div>
@@ -63,7 +63,7 @@ use yii\helpers\Html;
                                 <div class="col-xs-6">
                                     <label>Check Out</label>
                                     <div class="datepicker-wrap">
-                                       <input type="text" name="MainSearchForm[date_to]" id="mainsearchform-date_to" class="input-text full-width form-control" placeholder="mm/dd/yy" />
+                                       <input type="text" name="MainSearchForm[date_to]" id="mainsearchform-date_to" class="input-text full-width form-control" placeholder="mm/dd/yy" disabled/>
                                     </div>
 <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_to'] ? $searchForm->errors['date_to'][0] : ''?><!--</div>-->
                                     <div class="help-block"></div>
