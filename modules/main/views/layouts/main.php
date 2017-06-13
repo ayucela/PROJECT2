@@ -70,7 +70,7 @@ $this->beginContent('@app/modules/main/views/layouts/_clear.php')
     <div class="main-navigation">
         <div class="container">
             <h1 class="logo navbar-brand">
-                <a href="index.html" title="Travelo - home">
+                <a href="/" title="Travelo - home">
                     <img src="images/logo.png" alt="Travelo HTML5 Template" />
                 </a>
             </h1>
