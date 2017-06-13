@@ -125,7 +125,7 @@ class PreviewForm extends Model
         if(isset($this->preview) && is_array($this->preview)){
           return true;
         } else
-            throw new HttpException(503, 'Preview not set!');
+            throw new HttpException(500, 'Preview not set!');
     }
 
     public function getPreview()

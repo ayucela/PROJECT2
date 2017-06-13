@@ -65,21 +65,26 @@ class HotelsPreviewHelper extends Component
     {
         $this->hotelCodes = $this->getHotelCodes();
         $this->hotels = $this->getHotels();
-        foreach ($this->hotels->hotels as $hotel){
 
-           $preview[] = $this->getHotelPreview($hotel);
+        if (isset($this->hotels->hotels)) {
+            foreach ($this->hotels->hotels as $hotel){
+
+                $preview[] = $this->getHotelPreview($hotel);
+            }
         }
-        if($preview){
+
+        if(isset($preview)) {
 
             return $preview;
         }
+
         return false;
 
     }
 
     private function getHotelCodes()
     {
-        if($this->availability && is_object($this->availability)){
+        if(isset($this->availability->hotels->hotels)) {
             foreach ($this->availability->hotels->hotels as $hotel){
                 $average =($hotel->maxRate+$hotel->minRate)/2;
                 $hotelData['code'] = $hotel->code;
@@ -96,8 +101,9 @@ class HotelsPreviewHelper extends Component
 
     private function getHotels()
     {
+        $hotels = new \stdClass();
 
-        if($this->hotelCodes){
+        if($this->hotelCodes !== false) {
             $codes = array_column($this->hotelCodes, 'code');
             $hotels = ApiClient::query(HotelsApiQuery::className())
                 ->addParams([
@@ -114,6 +120,8 @@ class HotelsPreviewHelper extends Component
     {
 
         if($hotel) {
+
+            $price = 0;
 
             foreach($this->hotelCodes as $hotelCode){
                 if($hotelCode['code']==$hotel->code){
