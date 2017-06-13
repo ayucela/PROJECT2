@@ -126,7 +126,7 @@ class PreviewForm extends Model
           return true;
         } else {
             Yii::info('preview not set:  ' . serialize(\Yii::$app->cache->get('preview')));
-            throw new HttpException(500, 'Preview not set!');
+            throw new HttpException(503, 'Preview not set!');
         }
 
     }
