@@ -148,6 +148,19 @@ tjq(document).ready(function() {
         tjq("#mainsearchform-date_to").datepicker('disable');
     }
 
+    if (tjq("#mainsearchform-date_to").val() !== '') {
+        var dateFrom = tjq("#mainsearchform-date_from").val();
+
+        var minDate = new Date(dateFrom);
+        minDate.setDate(minDate.getDate() + 1);
+
+        var maxDate = new Date(dateFrom);
+        maxDate.setDate(maxDate.getDate() + 30);
+
+        tjq("#mainsearchform-date_to").datepicker( "option", "minDate", minDate);
+        tjq("#mainsearchform-date_to").datepicker( "option", "maxDate", maxDate);
+    }
+
     tjq(document).on('change', 'input#mainsearchform-date_from', function(event) {
 
         tjq("#mainsearchform-date_to").datepicker('enable');
