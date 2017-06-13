@@ -144,7 +144,7 @@ tjq(document).ready(function() {
         }
     });
 
-    if (tjq("#mainsearchform-date_to").val() === '') {
+    if (tjq("#mainsearchform-date_to").val() === '' && tjq("#mainsearchform-date_from").val() === '') {
         tjq("#mainsearchform-date_to").datepicker('disable');
     }
 
