@@ -42,7 +42,10 @@
         <div>
             <p><?= \yii\helpers\StringHelper::truncateWords($model['description'], 30)?></p>
             <div>
-                <span class="price"><small>AVG/NIGHT</small><?=$model['price']?></span>
+                <span class="price">
+                    <small>AVG/NIGHT</small>
+                    <?= $model['price'] . ' ' . $model['currency'] ?>
+                </span>
                 <?=\yii\helpers\Html::a('SELECT', ['/hotels/view', 'code'=>$model['code']],['class'=>'button btn-small full-width text-center'])?>
             </div>
         </div>

@@ -15,7 +15,7 @@
             <?=\yii\helpers\Html::a('SELECT', ['/hotels/view', 'code'=>$model['code']],['class'=>'button btn-small full-width text-center'])?>
             <h4 class="box-title text-center"><?= \yii\helpers\StringHelper::truncateWords($model['name'], 20)?></h4>
             <label class="price-wrapper">
-                <span class="price-per-unit text-center"><?=$model['price']?></span>avg/night
+                <span class="price-per-unit text-center"><?= $model['price'] . ' ' . $model['currency'] ?></span>avg/night
             </label>
         </div>
     </article>

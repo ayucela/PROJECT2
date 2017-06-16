@@ -122,11 +122,19 @@ class HotelsPreviewHelper extends Component
         if($hotel) {
 
             $price = 0;
+            $currency = '';
 
             foreach($this->hotelCodes as $hotelCode){
                 if($hotelCode['code']==$hotel->code){
                     $price = $hotelCode['price'];
                 }
+            }
+
+            if (is_string($price) && strripos($price, ' ')) {
+                $explodedPrice = explode(' ', $price);
+
+                $price = isset($explodedPrice[0]) ? $explodedPrice[0] : $price;
+                $currency = isset($explodedPrice[1]) ? $explodedPrice[1] : $currency;
             }
 
             return [
@@ -140,6 +148,7 @@ class HotelsPreviewHelper extends Component
                 'latitude'=>$hotel->coordinates->latitude,
                 'category'=>$this->getCategory($hotel->categoryCode),
                 'price' => $price,
+                'currency' => $currency,
                 'view'=>self::IMAGE_URL.$this->generalView($hotel->images),
                 //'facilities' => $this->getFacilities($hotel->facilities)
             ];
@@ -164,7 +173,11 @@ class HotelsPreviewHelper extends Component
                 return $genImages[0]->path;
             } else
                 return false;
-        } throw new \yii\web\HttpException(404, 'No images found');
+        }
+
+        return false;
+
+//        throw new \yii\web\HttpException(404, 'No images found');
     }
 
     private function getFacilities($hotelFacilities)
