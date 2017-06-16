@@ -38,7 +38,6 @@ $config = [
             'targets' => [
                 'file' => [
                     'class' => 'yii\log\FileTarget',
-                    'except' => ['yii\web\HttpException:404'],
                     'levels' => ['error', 'warning'],
                     'logFile' => '@runtime/logs/app.log',
                 ],
