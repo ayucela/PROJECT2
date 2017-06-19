@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="container">
-    <div id="main" data-view = <?=$viewType['name']?>>
+    <div id="main" data-view = <?= $viewType['name'] ?>>
         <div class="row">
             <div class="col-sm-4 col-md-3">
                 <?php $form = ActiveForm::begin([
@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
                         ],
                     ],
                 ])?>
-                <h4 class="search-results-title" ><i class="soap-icon-search"></i><b><?=count($model->preview)?></b> results found.</h4>
+                <h4 class="search-results-title" ><i class="soap-icon-search"></i><b><?= count($model->preview) ?></b> results found.</h4>
                 <div class="toggle-container filters-container" id="price-container">
                     <div class="panel style1 arrow-right">
                         <h4 class="panel-title">
@@ -51,7 +51,7 @@ use yii\widgets\ActiveForm;
                                 'accs'=> $model->accommodation
                             ])?>
                         </div>
-                        <input type="hidden" name="PreviewForm[accommodation]" value="<?= $model->accommodation?>"  id="previewform-accommodation"/>
+                        <input type="hidden" name="PreviewForm[accommodation]" value="<?= $model->accommodation ?>"  id="previewform-accommodation"/>
                     </div>
 
                     <div class="panel style1 arrow-right">
@@ -63,74 +63,9 @@ use yii\widgets\ActiveForm;
                                 'facility'=> $model->amenities
                             ])?>
                         </div>
-                        <input type="hidden" name="PreviewForm[amenities]" value="<?=$model->amenities?>"  id="previewform-amenities" />
+                        <input type="hidden" name="PreviewForm[amenities]" value="<?= $model->amenities ?>"  id="previewform-amenities" />
                     </div>
 
-
-                    <div class="panel style1 arrow-right">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#modify-search-panel" class="collapsed">Modify Search</a>
-                        </h4>
-                        <div id="modify-search-panel" class="panel-collapse collapse">
-                            <div class="panel-content">
-
-                                    <div class="form-group">
-                                        <label>destination</label>
-                                        <input type="text" name="PreviewForm[destination]"  id="previewform-destination" class="input-text full-width" value="<?=$model->destination?>" placeholder="enter a destination or hotel name"
-                                               aria-required="true" aria-invalid="true"/>
-<!--                                        <div class="help-block">--><?//= $model->errors['destination'] ? $model->errors['destination'][0] : ''?><!--</div>-->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>check in</label>
-                                        <div class="datepicker-wrap">
-                                            <input type="text" name="PreviewForm[date_from]"  id="previewform-date_from" value="<?=$model->date_from?>" class="input-text full-width" placeholder="mm/dd/yy" />
-<!--                                            <div class="help-block">--><?//= $model->errors['date_from'] ? $model->errors['date_from'][0] : ''?><!--</div>-->
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>check out</label>
-                                        <div class="datepicker-wrap">
-                                            <input type="text" name="PreviewForm[date_to]"  id="previewform-date_to" value="<?=$model->date_to?>" class="input-text full-width" placeholder="mm/dd/yy" />
-<!--                                            <div class="help-block">--><?//= $model->errors['date_to'] ? $model->errors['date_to'][0] : ''?><!--</div>-->
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>rooms</label>
-                                        <div class="selector">
-                                            <select id="previewform-rooms" name="PreviewForm[rooms]" class="full-width">
-                                                <option selected value="1">01</option>
-                                                <option value="2">02</option>
-                                                <option value="3">03</option>
-                                                <option value="4">04</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>adults</label>
-                                        <div class="selector">
-                                            <select id="previewform-adults" name="PreviewForm[adults]" class="full-width">
-                                                <option selected value="1">01</option>
-                                                <option value="2">02</option>
-                                                <option value="3">03</option>
-                                                <option value="4">04</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>child</label>
-                                        <div class="selector">
-                                            <select id="previewform-children" name="PreviewForm[children]" class="full-width">
-                                                <option selected value="0">No kids</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br />
-
-                                    <button type="submit" class="btn-medium icon-check uppercase full-width" id="preview-button-submit">search again</button>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <?php ActiveForm::end()?>
             </div>
