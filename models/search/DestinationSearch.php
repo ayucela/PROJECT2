@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dzozulya
- * Date: 04.04.17
- * Time: 9:17
- */
 
 namespace app\models\search;
 
@@ -62,19 +56,20 @@ class DestinationSearch extends Destinations
 
         // grid filtering conditions
 
+        if (mb_strtoupper($params, 'utf-8') == $params) {
+            $query->andFilterWhere(['like', '{{%destinations}}.code', $params]);
+        }
+        else {
+            $query->orFilterWhere(['like', '{{%destinations}}.code', $params])
+                ->orFilterWhere(['like', '{{%destinations}}.name_en', $params]);
+        }
 
-        $query->orFilterWhere(['like', 'code', $params])
-            ->orFilterWhere(['like', 'name_en', $params]);
-
-        /*   $query->joinWith(['destinations'=>function($q) use($params){
-               $q->andFilterWhere(['like', 'ycl_destinations.code', $params])
-                   ->andFilterWhere(['like', 'ycl_destinations.name_en', $params]);
-           }]);*/
-
-
-
-
-
+//        if (mb_strtoupper($params, 'utf-8') == $params) {
+//            $query->joinWith(['zones'=>function($q) use($params){
+//                $q->orFilterWhere(['like', '{{%zones}}.destination_code', $params])
+//                    ->orFilterWhere(['like', '{{%zones}}.name_en', $params]);
+//            }]);
+//        }
 
         return $dataProvider;
     }

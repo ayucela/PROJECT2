@@ -69,36 +69,8 @@ tjq(document).ready(function() {
         tjq('#preview-form').submit();
     });
 
-    tjq('#mainsearchform-destination').on('input', function(){
-
-        searchStr = tjq('#mainsearchform-destination').val();
-
-        tjq.ajax({
-            url: '/main/site/search-ajax',
-            type: 'post',
-            data: {
-                search : searchStr
-            }
-        })
-            .done(
-                function(data){
-                    data.forEach(function(item, i){
-                        console.log(item);
-                        responseStr = "<p>"+item.country.name_en+";&nbsp;"+
-                            item.destination.name_en+"_"+item.destination.code+"</p>";
-                        tjq('#search-result').removeClass('hidden');
-                        tjq('#search-result').append(responseStr);
-                        tjq('#search-result').children().on('click', function(e){
-                            destination = tjq(this).text();
-                            tjq('#mainsearchform-destination').val(destination);
-                            tjq('#search-result').addClass('hidden').html('');
-
-                        });
-                    });
-                }
-            );
-        tjq('#search-result').addClass('hidden').html('');
-
+    tjq('#mainsearchform-destination').on('input', function() {
+        getDestinationsByQuery();
     });
 
 
@@ -109,8 +81,9 @@ tjq(document).ready(function() {
         var text = tjq('#mainsearchform-destination').val();
 
         var textIncludes = (text.includes(';') || text.includes('_'));
+        var textInCodeFormat = checkInputValueIsCode();
 
-        if (!textIncludes && tjq('#search-result').children().length < 1) {
+        if (!textIncludes && tjq('#search-result').children().length < 1 &&  !textInCodeFormat) {
             (event.preventDefault) ? event.preventDefault() : event.returnValue = false;
 
             tjq('input#mainsearchform-destination ~ div.help-block').text('Destination is not correct!');
@@ -201,6 +174,57 @@ tjq(document).ready(function() {
         var value = input.val();
 
         return value !== '' && value.includes('/') && value.length === 10;
+    }
+
+    getDestinationsByQuery();
+
+    function loadFirstCorrectDestinationResult() {
+
+        if (checkInputValueIsCode() && tjq('#search-result').children().length  === 1) {
+
+            tjq('#mainsearchform-destination').val(tjq(tjq('#search-result').children()[0]).text());
+
+            tjq('#search-result').addClass('hidden').html('');
+        }
+    }
+
+    function checkInputValueIsCode() {
+        return (/[A-Z]/.test(tjq('#mainsearchform-destination').val()));
+    }
+
+
+    function getDestinationsByQuery() {
+        searchStr = tjq('#mainsearchform-destination').val();
+
+        tjq.ajax({
+            url: '/main/site/search-ajax',
+            type: 'post',
+            data: {
+                search : searchStr
+            }
+        })
+            .done(function(data){
+
+                tjq('#search-result').html('');
+
+                data.forEach(function(item, i) {
+                    // console.log(item);
+                    var responseStr = "<p>"+item.country.name_en+";&nbsp;"+
+                        item.destination.name_en+"_"+item.destination.code+"</p>";
+
+                    tjq('#search-result').removeClass('hidden');
+
+                    tjq(responseStr).appendTo('div#search-result');
+
+                    tjq('#search-result').children().on('click', function(e){
+                        destination = tjq(this).text();
+                        tjq('#mainsearchform-destination').val(destination);
+                        tjq('#search-result').addClass('hidden').html('');
+                    });
+                });
+
+                loadFirstCorrectDestinationResult();
+            });
     }
 
 });

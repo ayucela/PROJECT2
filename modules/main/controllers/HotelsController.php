@@ -51,6 +51,8 @@ class HotelsController extends Controller
     const GRID_VIEW = 6;
     const BLOCK_VIEW = 9;
 
+    public $model;
+
     /**
      * Search and filter hotels
      * @return string
@@ -109,6 +111,9 @@ class HotelsController extends Controller
 
             ],
         ]);
+
+        $this->model = $model;
+
         //dd($model);
 
         return $this->render('search', [

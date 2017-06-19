@@ -8156,6 +8156,7 @@ ul.menu.mini li:hover a, ul.menu.mini li.active a {
 /* 4.1. Default Style ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .search-box-wrapper {
   background: #fff;
+  margin-bottom: 2%;
 }
 
 .search-box {
