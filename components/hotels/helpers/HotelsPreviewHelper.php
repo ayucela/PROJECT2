@@ -138,18 +138,18 @@ class HotelsPreviewHelper extends Component
             }
 
             return [
-                'code'=>$hotel->code,
-                'name'=>$hotel->name->content,
-                'accommodation'=>$hotel->accommodationTypeCode,
-                'description'=>$hotel->description->content,
-                'country'=>$hotel->countryCode,
-                'city'=>$hotel->city->content,
-                'longitude'=>$hotel->coordinates->longitude,
-                'latitude'=>$hotel->coordinates->latitude,
-                'category'=>$this->getCategory($hotel->categoryCode),
+                'code' => isset($hotel->code) ? $hotel->code : '',
+                'name' => isset($hotel->name) && isset($hotel->name->content) ? $hotel->name->content : '',
+                'accommodation' => isset($hotel->accommodationTypeCode) ? $hotel->accommodationTypeCode : '',
+                'description' => isset($hotel->description) && isset($hotel->description->content) ? $hotel->description->content : '',
+                'country' => isset($hotel->countryCode) ? $hotel->countryCode : '',
+                'city' => isset($hotel->city) && isset($hotel->city->content) ? $hotel->city->content : '',
+                'longitude' => isset($hotel->coordinates) && isset($hotel->coordinates->longitude) ? $hotel->coordinates->longitude : '',
+                'latitude' => isset($hotel->coordinates) && isset($hotel->coordinates->latitude) ? $hotel->coordinates->latitude : '',
+                'category' => (isset($hotel->countryCode) ? $hotel->countryCode : ''),
                 'price' => $price,
                 'currency' => $currency,
-                'view'=>self::IMAGE_URL.$this->generalView($hotel->images),
+                'view' => self::IMAGE_URL.$this->generalView($hotel->images),
                 //'facilities' => $this->getFacilities($hotel->facilities)
             ];
 
