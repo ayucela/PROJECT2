@@ -749,7 +749,7 @@ $this->beginContent('@app/modules/main/views/layouts/_clear.php')
                         <div class="form-group col-sm-6 col-md-3">
                             <h4 class="title">Where</h4>
                             <label>Your Destination</label>
-                            <input autocomplete="off" type="text" name="MainSearchForm[destination]"  id="mainsearchform-destination" class="input-text full-width form-control" value="<?= isset($this->context->model) ? $this->context->model->destination : '' ?>" placeholder="enter a destination or hotel name"
+                            <input autocomplete="off" type="text" name="MainSearchForm[destination]"  id="mainsearchform-destination" class="input-text full-width form-control" value="<?= Yii::$app->session->get('search-model') != null ? Yii::$app->session->get('search-model')->destination : '' ?>" placeholder="enter a destination or hotel name"
                                    aria-required="true" aria-invalid="true"/>
                             <!--                            <div class="help-block">--><?//= $searchForm->errors['destination'] ? $searchForm->errors['destination'][0] : ''?><!--</div>-->
                             <div class="help-block"></div>
@@ -762,7 +762,7 @@ $this->beginContent('@app/modules/main/views/layouts/_clear.php')
                                 <div class="col-xs-6">
                                     <label>Check In</label>
                                     <div class="datepicker-wrap">
-                                        <input type="text" name="MainSearchForm[date_from]"  id="mainsearchform-date_from" class="input-text full-width form-control" placeholder="mm/dd/yy" value="<?= isset($this->context->model) ? $this->context->model->date_from : '' ?>" readonly/>
+                                        <input type="text" name="MainSearchForm[date_from]"  id="mainsearchform-date_from" class="input-text full-width form-control" placeholder="mm/dd/yy" value="<?= Yii::$app->session->get('search-model') != null ? Yii::$app->session->get('search-model')->date_from : '' ?>" readonly/>
                                     </div>
                                     <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_from'] ? $searchForm->errors['date_from'][0] : ''?><!--</div>-->
                                     <div class="help-block"></div>
@@ -770,7 +770,7 @@ $this->beginContent('@app/modules/main/views/layouts/_clear.php')
                                 <div class="col-xs-6">
                                     <label>Check Out</label>
                                     <div class="datepicker-wrap">
-                                        <input type="text" name="MainSearchForm[date_to]" id="mainsearchform-date_to" class="input-text full-width form-control" placeholder="mm/dd/yy" value="<?= isset($this->context->model) ? $this->context->model->date_to : '' ?>" readonly/>
+                                        <input type="text" name="MainSearchForm[date_to]" id="mainsearchform-date_to" class="input-text full-width form-control" placeholder="mm/dd/yy" value="<?= Yii::$app->session->get('search-model') != null ? Yii::$app->session->get('search-model')->date_to : '' ?>" readonly/>
                                     </div>
                                     <!--                                    <div class="help-block">--><?//= $searchForm->errors['date_to'] ? $searchForm->errors['date_to'][0] : ''?><!--</div>-->
                                     <div class="help-block"></div>

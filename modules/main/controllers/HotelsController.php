@@ -33,12 +33,14 @@ use hotelbeds\hotel_api_sdk\model\Occupancy;
 use hotelbeds\hotel_api_sdk\model\Stay;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\ApiVersions;
+use Yii;
 use yii\base\Exception;
 use yii\data\ArrayDataProvider;
 use yii\data\Sort;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\web\Session;
 use Zend\Json\Server\Exception\HttpException;
 
 
@@ -111,6 +113,8 @@ class HotelsController extends Controller
 
             ],
         ]);
+
+        Yii::$app->session->set('search-model', $model);
 
         $this->model = $model;
 
