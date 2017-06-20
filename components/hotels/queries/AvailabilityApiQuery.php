@@ -27,11 +27,11 @@ class AvailabilityApiQuery extends ApiQuery implements ApiQueryInterface
     const QUERY_URL = '/hotel-api/1.0/hotels';
 
     public $stay;
-    public $occupancies=[];
+    public $occupancies = [];
     public $destination;
     public $hotels;
     public $geolocation;
-    public $reviews=[];
+    public $reviews = [];
     public $language;
 
     private $body = [];

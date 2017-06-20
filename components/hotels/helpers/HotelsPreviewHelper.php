@@ -118,8 +118,7 @@ class HotelsPreviewHelper extends Component
 
     protected function getHotelPreview($hotel)
     {
-
-        if($hotel) {
+        if ($hotel) {
 
             $price = 0;
             $currency = '';
