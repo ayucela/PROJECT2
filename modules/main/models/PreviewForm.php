@@ -125,8 +125,16 @@ class PreviewForm extends Model
         if(isset($this->preview) && is_array($this->preview)){
           return true;
         } else {
-            Yii::info('preview not set:  ' . serialize(\Yii::$app->cache->get('preview')));
-            throw new HttpException(503, 'Preview not set!');
+            for ($i = 1; $i = 3; $i++) {
+                $this->setPreview();
+
+                if (isset($this->preview) && is_array($this->preview)) {
+                    return true;
+                }
+            }
+
+            Yii::warning('preview not set:  ' . serialize($this->preview));
+            throw new HttpException(404, 'Preview not set!');
         }
 
     }
